@@ -14,22 +14,22 @@ const router = createRouter({
             path: ROUTES[RouteNames.HOME].path,
             name: ROUTES[RouteNames.HOME].name,
             component: () => import("@pages/Home.vue"),
-            beforeEnter: []
+            beforeEnter: [],
         },
         {
             path: ROUTES[RouteNames.NOT_FOUND].path,
             name: ROUTES[RouteNames.NOT_FOUND].name,
             component: () => import("@pages/NotFound.vue"),
-            beforeEnter: []
+            beforeEnter: [],
         },
         {
             path: "/:catchAll(.*)",
-            redirect: ROUTES[RouteNames.NOT_FOUND].path
-        }
-    ]
+            redirect: ROUTES[RouteNames.NOT_FOUND].path,
+        },
+    ],
 });
 
-router.beforeEach(async (to, _/*from*/ , next) => {
+router.beforeEach(async (to, _ /*from*/, next) => {
     const isAuth = useUserSessionStore().isAuthenticated();
     const toRoute = ROUTES[to.name as RouteNameValue];
 

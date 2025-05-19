@@ -19,20 +19,20 @@ jobs:
 
             - name: Install Dependencies
               run: |
-                # To prevent the following bug:
-                # Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828)
-                rm -rf package-lock.json node_modules/    
-                npm i
-                npm install -g vite
-                npm install -g vitest
+                  # To prevent the following bug:
+                  # Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828)
+                  rm -rf package-lock.json node_modules/    
+                  npm i
+                  npm install -g vite
+                  npm install -g vitest
 
             - name: Check Format
               run: npm run format
 
             - name: Setup .env
               run: |
-                touch .env
-                echo VITE_APP_URL=http://localhost:5173 >> .env
+                  touch .env
+                  echo VITE_APP_URL=http://localhost:5173 >> .env
 
             - name: Check Tests
               run: npm run test

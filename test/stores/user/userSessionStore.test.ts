@@ -9,11 +9,11 @@ describe("userSessionStore", () => {
 
     beforeEach(() => {
         setActivePinia(createPinia());
-    })
+    });
 
     test("whenCheckingNewUserState_thenIsNotAuthenticated", () => {
         const store = getStoreInstance();
 
         expect(store.isAuthenticated()).toBeFalsy();
-    })
-})
+    });
+});

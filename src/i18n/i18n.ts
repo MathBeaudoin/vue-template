@@ -9,8 +9,8 @@ export const i18n = createI18n({
     fallbackLocale: "fr",
     messages: {
         fr: fr,
-        en: en
-    }
+        en: en,
+    },
 });
 
 type TFunction = (key: string) => string;

@@ -13,10 +13,10 @@ export const ROUTES: AllRoutes = {
             meta: [
                 {
                     name: "description",
-                    content: "Add a short description here for the home page."
-                }
-            ]
-        }
+                    content: "Add a short description here for the home page.",
+                },
+            ],
+        },
     },
     [RouteNames.NOT_FOUND]: {
         name: RouteNames.NOT_FOUND,
@@ -29,9 +29,9 @@ export const ROUTES: AllRoutes = {
             meta: [
                 {
                     name: "description",
-                    content: "Add a short description here for the not found page."
-                }
-            ]
-        }
+                    content: "Add a short description here for the not found page.",
+                },
+            ],
+        },
     },
 };

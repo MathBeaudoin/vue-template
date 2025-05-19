@@ -1,5 +1,5 @@
 <template>
-    <router-view v-if="finishedAuthentication" :key="currentRoute.fullPath"/>
+    <router-view v-if="finishedAuthentication" :key="currentRoute.fullPath" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ import { onMounted, ref } from "vue";
 const currentRoute = useRoute();
 const userSessionStore = useUserSessionStore();
 
-const { locale, /*theme*/ } = storeToRefs(userSessionStore);
+const { locale /*theme*/ } = storeToRefs(userSessionStore);
 const finishedAuthentication = ref<Boolean>(false);
 
 useHead(() => {

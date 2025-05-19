@@ -12,10 +12,8 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             return false;
         },
 
-        refreshSession() {
-
-        },
+        refreshSession() {},
     },
 
-    persist: true
+    persist: true,
 });
