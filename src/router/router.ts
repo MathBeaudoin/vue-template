@@ -6,7 +6,7 @@ import type { RouteNameValue } from "./types";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior(/*to, from, savedPosition*/) {
         return { top: 0 };
     },
     routes: [
@@ -29,7 +29,7 @@ const router = createRouter({
     ]
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _/*from*/ , next) => {
     const isAuth = useUserSessionStore().isAuthenticated();
     const toRoute = ROUTES[to.name as RouteNameValue];
 

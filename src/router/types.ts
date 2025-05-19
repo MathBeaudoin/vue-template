@@ -14,7 +14,7 @@ export type RouteHead = {
     ];
 };
 
-type RouteInfo = {
+export type RouteInfo = {
     name: RouteNameValue;
     path: RoutePathValue;
     head: RouteHead;

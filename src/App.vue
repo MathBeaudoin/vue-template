@@ -14,7 +14,7 @@ import { onMounted, ref } from "vue";
 const currentRoute = useRoute();
 const userSessionStore = useUserSessionStore();
 
-const { theme, locale } = storeToRefs(userSessionStore);
+const { locale, /*theme*/ } = storeToRefs(userSessionStore);
 const finishedAuthentication = ref<Boolean>(false);
 
 useHead(() => {

@@ -1,6 +1,5 @@
-import type { AllRoutes, RouteHead, RouteNameValue } from "@router/types";
+import type { AllRoutes } from "@router/types";
 import { RouteNames, RoutePaths } from "@router/constants";
-import type { RouteRecordNameGeneric } from "vue-router";
 
 export const ROUTES: AllRoutes = {
     [RouteNames.HOME]: {
