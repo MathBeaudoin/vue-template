@@ -1,5 +1,5 @@
-name: Setup Node for Project
-description: Shared steps to set up a Node.js project with caching
+name: Setup Node and Dependencies for Project
+description: Shared steps to set up a Node.js project and its dependencies, including caching
 
 runs:
     using: "composite"

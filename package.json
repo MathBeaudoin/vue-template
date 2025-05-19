@@ -9,6 +9,7 @@
         "build": "vue-tsc -b && vite build && npm run generate-seo",
         "generate-seo": "npx tsx --env-file=.env scripts/seoGeneration.ts",
         "format": "npx prettier --trailing-comma all --tab-width 4 --print-width 120 -uw --cache --ignore-path .prettierignore .",
+        "format-check": "npx prettier --trailing-comma all --tab-width 4 --print-width 120 -uw --cache --ignore-path .prettierignore . --check",
         "test": "vitest",
         "test-coverage": "vitest run --coverage",
         "prepare": "husky"
@@ -28,6 +29,7 @@
         "@vue/tsconfig": "^0.7.0",
         "husky": "^9.1.7",
         "prettier": "^3.5.3",
+        "rollup-plugin-visualizer": "^5.14.0",
         "sass": "^1.89.0",
         "tsx": "^4.19.4",
         "typescript": "~5.8.3",

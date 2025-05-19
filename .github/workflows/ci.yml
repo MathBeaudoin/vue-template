@@ -10,20 +10,42 @@ jobs:
     format:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: ./.github/actions/setup-node
-            - run: npm run format
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node and Dependencies
+              uses: ./.github/actions/setup-node-and-dependencies
+
+            - name: Run Format
+              run: npm run format-check
 
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: ./.github/actions/setup-node
-            - run: npm run test-coverage
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node and Dependencies
+              uses: ./.github/actions/setup-node-and-dependencies
+
+            - name: Run Tests with Coverage
+              run: npm run test-coverage
 
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: ./.github/actions/setup-node
-            - run: npm run build
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node and Dependencies
+              uses: ./.github/actions/setup-node-and-dependencies
+
+            - name: Run Build
+              run: npm run build
+
+            - name: Upload Bundle Artifact 
+              uses: actions/upload-artifact@v4
+              with:
+                name: rollup_bundle_stats
+                path: rollup_bundle_stats.html
+                overwrite: true
