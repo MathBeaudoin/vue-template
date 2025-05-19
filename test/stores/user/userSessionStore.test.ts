@@ -1,5 +1,5 @@
-import { expect, test, describe, vi, beforeEach } from "vitest";
-import { useUserSessionStore } from "@stores/user/userSessionStore";
+import { expect, test, describe, beforeEach } from "vitest";
+import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { createPinia, setActivePinia } from "pinia";
 
 describe("userSessionStore", () => {
