@@ -10,11 +10,11 @@ export const ROUTES: AllRoutes = {
         hideOnAuth: false,
         addToSiteMap: true,
         head: {
-            title: "Site name - Description",
+            title: "Vue Template - Home Page Description",
             meta: [
                 {
                     name: "description",
-                    content: "Add short description here."
+                    content: "Add a short description here for the home page."
                 }
             ]
         }
@@ -26,27 +26,13 @@ export const ROUTES: AllRoutes = {
         hideOnAuth: false,
         addToSiteMap: false,
         head: {
-            title: "Site name - Description",
+            title: "Vue Template - Not Found Description",
             meta: [
                 {
                     name: "description",
-                    content: "Add short description here."
+                    content: "Add a short description here for the not found page."
                 }
             ]
         }
     },
 };
-
-export class HeadSelector {
-    private isValidRouteName(name: any): boolean {
-        return name !== undefined && Object.values(RouteNames).includes(name);
-    }
-
-    public select(name: RouteRecordNameGeneric): RouteHead {
-        if (this.isValidRouteName(name)) {
-            return ROUTES[name as RouteNameValue].head;
-        } else {
-            return ROUTES[RouteNames.HOME].head;
-        }
-    }
-}

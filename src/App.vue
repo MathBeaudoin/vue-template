@@ -1,9 +1,22 @@
 <template>
-    <Home />
+    <router-view :key="currentRoute.fullPath"/>
 </template>
 
 <script setup lang="ts">
-import Home from "@/pages/Home.vue";
-</script>
+import { useRoute } from "vue-router";
+import { useUserSessionStore } from "@stores/user/userSessionStore";
+import { storeToRefs } from "pinia";
+import { HeadSelector } from "@/router/headSelector.ts";
+import { useHead } from "@unhead/vue";
 
-<style scoped></style>
+const currentRoute = useRoute();
+const userSessionStore = useUserSessionStore();
+
+const { theme, locale } = storeToRefs(userSessionStore);
+
+useHead(() => {
+    const headSelector = new HeadSelector();
+    return headSelector.select(currentRoute.name);
+});
+
+</script>

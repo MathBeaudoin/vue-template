@@ -35,7 +35,6 @@ router.beforeEach(async (to, from, next) => {
 
     // User needs to be authenticated
     if (toRoute.requiresAuth && !isAuth) {
-        
         return next({ name: RouteNames.HOME });
     }
 
