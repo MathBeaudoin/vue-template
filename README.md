@@ -10,6 +10,7 @@ It includes mainly all the dependencies and folder structure for:
 - **Logging**
 - **SEO files generation**
 - **npm commands** (build, format, test, etc.)
+- **Git Hooks**
 
 And many more!
 Have fun.
