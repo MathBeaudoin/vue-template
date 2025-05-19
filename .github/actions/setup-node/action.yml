@@ -24,8 +24,10 @@ runs:
 
         - name: Install Dependencies
           run: npm ci
+          shell: bash
 
         - name: Setup .env
           run: |
               touch .env
               echo VITE_APP_URL=http://localhost:5173 >> .env
+          shell: bash
