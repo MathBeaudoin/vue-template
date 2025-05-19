@@ -10,17 +10,17 @@ jobs:
     format:
         runs-on: ubuntu-latest
         steps:
-          - uses: ./.github/workflows/setup_node
-          - run: npm run format
+            - uses: ./.github/actions/setup-node
+            - run: npm run format
 
     test:
         runs-on: ubuntu-latest
         steps:
-          - uses: ./.github/workflows/setup_node
-          - run: npm run test-coverage
+            - uses: ./.github/actions/setup-node
+            - run: npm run test-coverage
 
     build:
         runs-on: ubuntu-latest
         steps:
-          - uses: ./.github/workflows/setup_node
-          - run: npm run build
+            - uses: ./.github/actions/setup-node
+            - run: npm run build
