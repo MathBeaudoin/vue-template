@@ -9,7 +9,6 @@
         "build": "vue-tsc -b && vite build && npm run generate-seo",
         "generate-seo": "npx tsx --env-file=.env scripts/seoGeneration.ts",
         "format": "npx prettier --trailing-comma all --tab-width 4 --print-width 120 -uw --cache --ignore-path .prettierignore .",
-        "format-check": "npx prettier --trailing-comma all --tab-width 4 --print-width 120 -uw --cache --ignore-path .prettierignore --check .",
         "test": "vitest",
         "test-coverage": "vitest run --coverage",
         "prepare": "husky"

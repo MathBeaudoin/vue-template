@@ -17,7 +17,9 @@ jobs:
               uses: ./.github/actions/setup-node-and-dependencies
 
             - name: Run Format
-              run: npm run format-check
+              run: | 
+                  npm run format
+                  git diff --exit-code
 
     test:
         runs-on: ubuntu-latest
@@ -43,9 +45,9 @@ jobs:
             - name: Run Build
               run: npm run build
 
-            - name: Upload Bundle Artifact 
+            - name: Upload Bundle Artifact
               uses: actions/upload-artifact@v4
               with:
-                name: rollup_bundle_stats
-                path: rollup_bundle_stats.html
-                overwrite: true
+                  name: rollup_bundle_stats
+                  path: rollup_bundle_stats.html
+                  overwrite: true
