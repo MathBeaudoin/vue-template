@@ -10,7 +10,7 @@
         "generate-seo": "npx tsx --env-file=.env scripts/seoGeneration.ts",
         "format": "npx prettier --trailing-comma all --tab-width 4 --print-width 120 -uw --cache --ignore-path .prettierignore .",
         "test": "vitest",
-        "test-coverage": "vitest run --coverage",
+        "test-coverage": "vitest run --coverage --coverage.reportsDirectory='./coverage' --coverage.reporter=lcov --coverage.reporter=text",
         "prepare": "husky"
     },
     "dependencies": {
