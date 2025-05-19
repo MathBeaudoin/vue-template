@@ -10,7 +10,11 @@ export const useUserSessionStore = defineStore("userSessionStore", {
     actions: {
         isAuthenticated() {
             return true;
-        }
+        },
+
+        refreshSession() {
+
+        },
     },
 
     persist: true
