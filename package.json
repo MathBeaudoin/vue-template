@@ -1,27 +1,28 @@
 {
-  "name": "vue-template",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@unhead/vue": "^2.0.9",
-    "pinia": "^3.0.2",
-    "pinia-plugin-persistedstate": "^4.3.0",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.3",
-    "@vue/tsconfig": "^0.7.0",
-    "prettier": "^3.5.3",
-    "sass": "^1.89.0",
-    "typescript": "~5.8.3",
-    "vite": "^6.3.5",
-    "vue-tsc": "^2.2.8"
-  }
+    "name": "vue-template",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc -b && vite build",
+        "format": "prettier --trailing-comma all --tab-width 4 --print-width 120 -uw --cache --ignore-path .prettierignore .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@unhead/vue": "^2.0.9",
+        "pinia": "^3.0.2",
+        "pinia-plugin-persistedstate": "^4.3.0",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.1"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.3",
+        "@vue/tsconfig": "^0.7.0",
+        "prettier": "^3.5.3",
+        "sass": "^1.89.0",
+        "typescript": "~5.8.3",
+        "vite": "^6.3.5",
+        "vue-tsc": "^2.2.8"
+    }
 }
