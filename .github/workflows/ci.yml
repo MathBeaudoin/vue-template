@@ -32,7 +32,10 @@ jobs:
                 echo VITE_APP_URL=http://localhost:5173 >> .env
 
             - name: Check Tests
-              run: npm run test
+              run: |
+                rm -rf package-lock.json node_modules/
+                npm i
+                npm run test
 
             - name: Check Build
               run: npm run build
