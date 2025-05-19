@@ -15,9 +15,11 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
-            "@pages/*": ["./src/pages/*"],
+            "@assets": ["./src/assets/*"],
             "@components/*": ["./src/components/*"],
-            "@assets": ["./src/assets/*"]
+            "@pages/*": ["./src/pages/*"],
+            "@router/*": ["./src/router/*"],
+            "@stores/*": ["./src/stores/*"],
         }
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
