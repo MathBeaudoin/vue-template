@@ -7,41 +7,20 @@ on:
             - master
 
 jobs:
-    format-check:
-        name: Format, Test and Build
+    format:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v4
+          - uses: ./.github/workflows/setup_node
+          - run: npm run format
 
-            - name: Setup Node
-              uses: actions/setup-node@v4
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: ./.github/workflows/setup_node
+          - run: npm run test-coverage
 
-            - name: Cache Dependencies
-              uses: actions/cache@v4
-              env:
-                  cache-name: cache-node-modules
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
-
-            - name: Install Dependencies
-              run: npm ci
-
-            - name: Check Format
-              run: npm run format
-
-            - name: Setup .env
-              run: |
-                  touch .env
-                  echo VITE_APP_URL=http://localhost:5173 >> .env
-
-            - name: Check Tests
-              run: npm run test
-
-            - name: Check Build
-              run: npm run build
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: ./.github/workflows/setup_node
+          - run: npm run build
