@@ -1,9 +1,9 @@
 <template>
-    <HelloWorldPage />
+    <Home />
 </template>
 
 <script setup lang="ts">
-import HelloWorldPage from "@pages/HelloWorldPage.vue";
+import Home from "@/pages/Home.vue";
 </script>
 
 <style scoped></style>
