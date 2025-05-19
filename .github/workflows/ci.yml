@@ -1,0 +1,21 @@
+name: CI Pipeline
+
+on:
+    push:
+        branches:
+            - develop
+            - master
+
+jobs:
+    format-check:
+        name: Check Application Code Format
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Set Up Node
+              uses: actions/setup-node@v4
+
+            - name: Install Prettier Vite and Format + Test Dependencies
+              run: npm install -g prettier

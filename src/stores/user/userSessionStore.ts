@@ -4,12 +4,12 @@ import type { Locale, Theme } from "@stores/user/types";
 export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({
         theme: "dark" as Theme,
-        locale: "fr" as Locale,
+        locale: "en" as Locale,
     }),
 
     actions: {
         isAuthenticated() {
-            return true;
+            return false;
         },
 
         refreshSession() {
