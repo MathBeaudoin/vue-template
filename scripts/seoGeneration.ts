@@ -57,7 +57,7 @@ async function createRobotsTxt() {
     robots += `Allow: /\n`;
     robots += `Disallow:\n`;
     robots += `\n`;
-    robots += `Sitemap: https://tedor.ca/sitemap.xml`;
+    robots += `Sitemap: ${process.env.VITE_APP_URL}/sitemap.xml`;
 
     await fs.promises.writeFile("dist/robots.txt", robots);
 }
