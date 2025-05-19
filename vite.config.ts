@@ -5,12 +5,12 @@ import { visualizer } from "rollup-plugin-visualizer";
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
-        vue(), 
+        vue(),
         visualizer({
             filename: "rollup_bundle_stats.html",
             template: "flamegraph",
             open: false,
-        }) as PluginOption
+        }) as PluginOption,
     ],
     resolve: {
         alias: {

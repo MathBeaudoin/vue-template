@@ -17,7 +17,7 @@ jobs:
               uses: ./.github/actions/setup-node-and-dependencies
 
             - name: Run Format
-              run: | 
+              run: |
                   npm run format
                   git diff --exit-code
 
