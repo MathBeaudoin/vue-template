@@ -17,6 +17,7 @@
     "dependencies": {
         "@tailwindcss/vite": "^4.1.7",
         "@unhead/vue": "^2.0.9",
+        "lovable-tagger": "^1.1.8",
         "pinia": "^3.0.2",
         "pinia-plugin-persistedstate": "^4.3.0",
         "tailwindcss": "^4.1.7",
