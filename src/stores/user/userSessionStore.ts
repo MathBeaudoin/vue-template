@@ -3,7 +3,7 @@ import type { Locale, Theme } from "@stores/user/types";
 
 export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({
-        theme: "dark" as Theme,
+        theme: "light" as Theme,
         locale: "en" as Locale,
     }),
 
