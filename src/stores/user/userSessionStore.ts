@@ -12,6 +12,18 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             return false;
         },
 
+        isDarkTheme() {
+            return this.theme === "dark";
+        },
+
+        changeTheme() {
+            if (this.isDarkTheme()) {
+                this.theme = "light";
+            } else {
+                this.theme = "dark";
+            }
+        },
+
         refreshSession() {},
     },
 

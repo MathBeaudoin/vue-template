@@ -14,30 +14,34 @@
     }
 }
 
-.appbar-items {
+.appbar-links {
     @apply flex items-center;
 }
 
-.appbar-item {
+.appbar-link {
     @apply px-3 py-2;
 }
 
-.appbar-item-title {
+.appbar-link-site-title {
     @apply text-blue-600 font-semibold text-lg;
 }
 
-.appbar-item-text {
+.appbar-link-default {
     @apply text-gray-700 transition hover:text-blue-600;
 }
 
-.appbar-utils {
+.appbar-secondary-items {
     @apply flex flex-1 items-center justify-end space-x-1;
 }
 
-.appbar-util {
-    @apply px-2 py-2 hover:bg-gray-100 rounded-lg;
+.appbar-secondary-item {
+    @apply px-2 py-2;
 }
 
-.appbar-util-icon {
+.appbar-secondary-item-clickable {
+    @apply hover:bg-gray-100 rounded-lg cursor-pointer;
+}
+
+.appbar-secondary-item-icon {
     @apply text-gray-700 transition w-5 h-5;
 }
