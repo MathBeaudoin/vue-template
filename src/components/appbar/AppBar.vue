@@ -2,42 +2,32 @@
     <header class="shadow">
         <div class="appbar-container">
             <nav class="appbar-links">
-                <router-link class="appbar-item appbar-link-site-title" :to="{ name: ROUTES.home.name }">
-                    App Name
-                </router-link>
+                <SiteTitle displayed-text="App Name" :route-name="ROUTES.home.name" />
 
-                <router-link
-                    v-if="!isAuthenticated"
-                    :to="{ name: ROUTES.not_found.name }"
-                    class="appbar-link appbar-link-default"
-                >
-                    Dashboard
-                </router-link>
+                <Link displayed-text="Dashboard" :route-name="ROUTES.not_found.name" />
 
-                <router-link
-                    v-if="!isAuthenticated"
-                    :to="{ name: ROUTES.not_found.name }"
-                    class="appbar-link appbar-link-default"
-                >
-                    Dashboard
-                </router-link>
+                <Link displayed-text="About" :route-name="ROUTES.not_found.name" />
 
-                <router-link
-                    v-if="!isAuthenticated"
-                    :to="{ name: ROUTES.not_found.name }"
-                    class="appbar-item appbar-link-default"
-                >
-                    Dashboard
-                </router-link>
+                <Link
+                    v-if="isAuthenticated"
+                    displayed-text="Authenticated Dashboard"
+                    :route-name="ROUTES.not_found.name"
+                />
             </nav>
 
             <nav class="appbar-secondary-items">
-                <router-link :to="{ name: ROUTES.not_found.name }" class="appbar-secondary-item appbar-secondary-item-clickable">
+                <router-link
+                    :to="{ name: ROUTES.not_found.name }"
+                    class="appbar-secondary-item appbar-secondary-item-clickable"
+                >
                     <UserIcon class="appbar-secondary-item-icon" />
                 </router-link>
 
-                <button @click="userSessionStore.changeTheme" class="appbar-secondary-item appbar-secondary-item-clickable">
-                    <SunIcon v-if="isDarkTheme" class="appbar-secondary-item-icon" /> 
+                <button
+                    @click="userSessionStore.changeTheme"
+                    class="appbar-secondary-item appbar-secondary-item-clickable"
+                >
+                    <SunIcon v-if="isDarkTheme" class="appbar-secondary-item-icon" />
                     <MoonIcon v-else class="appbar-secondary-item-icon" />
                 </button>
 
@@ -58,6 +48,8 @@ import { Cog8ToothIcon } from "@heroicons/vue/24/outline";
 import { MoonIcon } from "@heroicons/vue/24/outline";
 import { SunIcon } from "@heroicons/vue/24/outline";
 import { UserIcon } from "@heroicons/vue/24/outline";
+import Link from "@components/appbar/Link.vue";
+import SiteTitle from "@components/appbar/SiteTitle.vue";
 
 const userSessionStore = useUserSessionStore();
 const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
