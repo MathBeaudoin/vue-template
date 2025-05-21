@@ -1,6 +1,6 @@
 <template>
-    <AppBar/>
-    
+    <AppBar />
+
     <router-view v-if="finishedAuthentication" :key="currentRoute.fullPath" />
 </template>
 

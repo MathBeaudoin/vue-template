@@ -2,12 +2,7 @@
     <header class="shadow">
         <div class="appbar-container">
             <nav class="appbar-navigation">
-                <router-link 
-                    class="appbar-item appbar-title"
-                    :to="{ name: ROUTES.home.name }" 
-                >
-                    App Name
-                </router-link>
+                <router-link class="appbar-item appbar-title" :to="{ name: ROUTES.home.name }"> App Name </router-link>
 
                 <router-link
                     v-if="!isAuthenticated"
@@ -19,12 +14,7 @@
             </nav>
 
             <nav class="appbar-util">
-                <router-link 
-                    class="appbar-item appbar-title"
-                    :to="{ name: ROUTES.home.name }" 
-                >
-                    App Name
-                </router-link>
+                <router-link class="appbar-item appbar-title" :to="{ name: ROUTES.home.name }"> App Name </router-link>
 
                 <router-link
                     v-if="!isAuthenticated"
@@ -45,5 +35,4 @@ import { ROUTES } from "@router/routes";
 
 const userSessionStore = useUserSessionStore();
 const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
-
 </script>
