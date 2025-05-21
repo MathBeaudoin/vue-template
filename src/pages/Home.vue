@@ -1,4 +1,6 @@
 <template>
+    <h1 class="text-3xl font-bold underline funky-title">Hello world!</h1>
+
     <HelloWorld msg="Vite + Vue" />
 </template>
 
