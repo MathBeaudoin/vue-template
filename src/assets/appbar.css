@@ -14,22 +14,30 @@
     }
 }
 
-.appbar-item {
-    @apply px-4 py-2;
+.appbar-items {
+    @apply flex items-center;
 }
 
-.appbar-title {
+.appbar-item {
+    @apply px-3 py-2;
+}
+
+.appbar-item-title {
     @apply text-blue-600 font-semibold text-lg;
 }
 
 .appbar-item-text {
-    @apply text-gray-700 hover:text-blue-600;
+    @apply text-gray-700 transition hover:text-blue-600;
 }
 
-.appbar-navigation {
-    @apply flex items-center;
+.appbar-utils {
+    @apply flex flex-1 items-center justify-end;
 }
 
 .appbar-util {
-    @apply flex flex-1 items-center justify-between space-x-2 md:justify-end;
+    @apply px-2 py-2 hover:bg-gray-100 rounded-lg;
+}
+
+.appbar-util-icon {
+    @apply text-gray-700 transition w-5 h-5;
 }
