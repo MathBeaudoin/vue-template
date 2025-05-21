@@ -1,0 +1,36 @@
+/*
+    Phones
+*/
+@media screen and (max-width: 599px) {
+}
+
+/*
+  Tablets and computers
+*/
+@media screen and (min-width: 600px) {
+    .appbar-container {
+        max-width: 1400px;
+        @apply mx-auto h-12 px-4 flex items-center;
+    }
+}
+
+.appbar-item {
+    @apply px-4 py-2;
+}
+
+.appbar-title {
+    @apply text-blue-600 font-semibold text-lg;
+}
+
+.appbar-item-text {
+    @apply text-gray-700 hover:text-blue-600;
+}
+
+.appbar-navigation {
+    @apply flex items-center;
+}
+
+.appbar-util {
+    @apply flex flex-1 items-center justify-between space-x-2 md:justify-end;
+}
+

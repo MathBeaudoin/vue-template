@@ -1,4 +1,6 @@
 <template>
+    <AppBar/>
+    
     <router-view v-if="finishedAuthentication" :key="currentRoute.fullPath" />
 </template>
 
@@ -10,6 +12,7 @@ import { HeadSelector } from "@/router/headSelector.ts";
 import { useHead } from "@unhead/vue";
 import { i18n } from "@i18n/i18n";
 import { onMounted, ref } from "vue";
+import AppBar from "@components/AppBar.vue";
 
 const currentRoute = useRoute();
 const userSessionStore = useUserSessionStore();
