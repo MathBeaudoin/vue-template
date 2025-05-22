@@ -8,7 +8,7 @@
             </nav>
 
             <nav class="appbar-links">
-                <Link displayed-text="Dashboard" :route-name="ROUTES.not_found.name" />
+                <Link displayed-text="Dashboard" :route-name="ROUTES.home.name" />
 
                 <Link displayed-text="About" :route-name="ROUTES.not_found.name" />
 

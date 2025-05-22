@@ -27,15 +27,19 @@
 }
 
 .appbar-link {
-    @apply px-3 py-2;
+    @apply px-3 py-2 text-gray-700;
+}
+
+.appbar-link-on-current-page {
+    @apply font-semibold;
+}
+
+.appbar-link-not-on-current-page {
+    @apply transition hover:text-blue-600;
 }
 
 .appbar-link-site-title {
     @apply text-blue-600 font-semibold text-lg;
-}
-
-.appbar-link-default {
-    @apply text-gray-700 transition hover:text-blue-600;
 }
 
 .appbar-secondary-items {
