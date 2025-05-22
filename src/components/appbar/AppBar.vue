@@ -1,9 +1,13 @@
 <template>
-    <header class="shadow">
+    <header class="header">
         <div class="appbar-container">
-            <nav class="appbar-links">
-                <SiteTitle displayed-text="App Name" :route-name="ROUTES.home.name" />
+            <nav class="appbar-main">
+                <SecondaryItemIcon id="hamburger" class="md:hidden" @click="" :icon="Bars3Icon" />
 
+                <SiteTitle displayed-text="App Name" :route-name="ROUTES.home.name" />
+            </nav>
+
+            <nav class="appbar-links">
                 <Link displayed-text="Dashboard" :route-name="ROUTES.not_found.name" />
 
                 <Link displayed-text="About" :route-name="ROUTES.not_found.name" />
@@ -34,6 +38,7 @@ import { Cog8ToothIcon } from "@heroicons/vue/24/outline";
 import { MoonIcon } from "@heroicons/vue/24/outline";
 import { SunIcon } from "@heroicons/vue/24/outline";
 import { UserIcon } from "@heroicons/vue/24/outline";
+import { Bars3Icon } from "@heroicons/vue/24/outline";
 import Link from "@components/appbar/Link.vue";
 import SiteTitle from "@components/appbar/SiteTitle.vue";
 import SecondaryItemIcon from "@components/appbar/SecondaryItemIcon.vue";

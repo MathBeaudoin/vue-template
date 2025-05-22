@@ -8,14 +8,22 @@
   Tablets and computers
 */
 @media screen and (min-width: 600px) {
-    .appbar-container {
-        max-width: 1400px;
-        @apply mx-auto h-12 px-4 flex items-center;
-    }
+}
+.appbar-container {
+    max-width: 1400px;
+    @apply mx-auto h-12 px-4 flex items-center flex-nowrap;
+}
+
+.header {
+    @apply sticky top-0 z-1000 shadow bg-white;
+}
+
+.appbar-main {
+    @apply flex items-center;
 }
 
 .appbar-links {
-    @apply flex items-center;
+    @apply hidden md:flex items-center;
 }
 
 .appbar-link {
@@ -43,5 +51,13 @@
 }
 
 .appbar-secondary-item-icon {
+    @apply text-gray-700 transition w-5 h-5;
+}
+
+.hamburger-container {
+    @apply px-2 py-2 hover:bg-gray-100 rounded-lg cursor-pointer;
+}
+
+.hamburger {
     @apply text-gray-700 transition w-5 h-5;
 }
