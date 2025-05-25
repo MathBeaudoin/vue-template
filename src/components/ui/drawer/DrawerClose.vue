@@ -6,8 +6,8 @@
     -->
 
     <DrawerClose data-slot="drawer-close" v-bind="props">
-        <XMarkIcon class="close-drawer-icon"/>
-    </DrawerClose> 
+        <XMarkIcon class="close-drawer-icon" />
+    </DrawerClose>
 </template>
 
 <script setup lang="ts">

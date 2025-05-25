@@ -8,23 +8,23 @@
                     </DrawerTrigger>
                 </AppBarDrawer>
 
-                <SiteTitle displayed-text="App Name" :route-name="ROUTES.home.name" />
+                <SiteTitle displayed-text="App Name" :route-name="MAPPED_ROUTES[RouteNames.HOME].name" />
             </nav>
 
             <nav class="appbar-links">
-                <Link displayed-text="Dashboard" :route-name="ROUTES.home.name" />
+                <Link displayed-text="Dashboard" :route-name="MAPPED_ROUTES[RouteNames.HOME].name" />
 
-                <Link displayed-text="About" :route-name="ROUTES.not_found.name" />
+                <Link displayed-text="About" :route-name="MAPPED_ROUTES[RouteNames.NOT_FOUND].name" />
 
                 <Link
                     v-if="isAuthenticated"
                     displayed-text="Authenticated Dashboard"
-                    :route-name="ROUTES.not_found.name"
+                    :route-name="MAPPED_ROUTES[RouteNames.NOT_FOUND].name"
                 />
             </nav>
 
             <nav class="appbar-secondary-items">
-                <SecondaryItemLink :icon="UserIcon" :route-name="ROUTES.not_found.name" />
+                <SecondaryItemLink :icon="UserIcon" :route-name="MAPPED_ROUTES[RouteNames.NOT_FOUND].name" />
 
                 <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
 
@@ -37,7 +37,8 @@
 <script setup lang="ts">
 import { useUserSessionStore } from "@stores/user/userSessionStore";
 import { computed } from "vue";
-import { ROUTES } from "@router/routes";
+import { MAPPED_ROUTES } from "@router/routes";
+import { RouteNames } from "@router/constants.ts";
 import { Cog8ToothIcon } from "@heroicons/vue/24/outline";
 import { MoonIcon } from "@heroicons/vue/24/outline";
 import { SunIcon } from "@heroicons/vue/24/outline";
@@ -45,7 +46,7 @@ import { UserIcon } from "@heroicons/vue/24/outline";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
 import Link from "@components/appbar/Link.vue";
 import SiteTitle from "@components/appbar/SiteTitle.vue";
-import DrawerTrigger from '@components/ui/drawer/DrawerTrigger.vue';
+import DrawerTrigger from "@components/ui/drawer/DrawerTrigger.vue";
 import AppBarDrawer from "@components/appbar/AppBarDrawer.vue";
 import SecondaryItemIcon from "@components/appbar/SecondaryItemIcon.vue";
 import SecondaryItemLink from "@components/appbar/SecondaryItemLink.vue";

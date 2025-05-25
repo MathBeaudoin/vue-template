@@ -18,7 +18,7 @@
             <div
                 class="ml-auto hidden shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
             >
-                <DrawerClose/>
+                <DrawerClose />
             </div>
             <slot></slot>
         </DrawerContent>
@@ -32,7 +32,7 @@ import { useForwardPropsEmits } from "reka-ui";
 import { DrawerContent, DrawerPortal } from "vaul-vue";
 import { cn } from "@/lib/utils";
 import DrawerOverlay from "./DrawerOverlay.vue";
-import DrawerClose from '@/components/ui/drawer/DrawerClose.vue';
+import DrawerClose from "@/components/ui/drawer/DrawerClose.vue";
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes["class"] }>();
 const emits = defineEmits<DialogContentEmits>();
