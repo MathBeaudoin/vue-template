@@ -26,7 +26,7 @@
 
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
 
-                <SecondaryItemIcon @click="" :icon="GlobeAmericasIcon" />
+                <LanguageMenu />
             </nav>
         </div>
     </header>
@@ -42,13 +42,13 @@ import { MoonIcon } from "@heroicons/vue/24/outline";
 import { SunIcon } from "@heroicons/vue/24/outline";
 import { UserIcon } from "@heroicons/vue/24/outline";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
-import { GlobeAmericasIcon } from "@heroicons/vue/24/outline";
 import Link from "@/components/appbar/Link.vue";
 import SiteTitle from "@/components/appbar/SiteTitle.vue";
 import DrawerTrigger from "@/components/ui/drawer/DrawerTrigger.vue";
 import AppBarDrawer from "@/components/appbar/AppBarDrawer.vue";
 import SecondaryItemIcon from "@/components/appbar/SecondaryItemIcon.vue";
 import SecondaryItemLink from "@/components/appbar/SecondaryItemLink.vue";
+import LanguageMenu from "@/components/appbar/LanguageMenu.vue";
 
 const userSessionStore = useUserSessionStore();
 

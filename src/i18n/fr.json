@@ -14,6 +14,9 @@
             "displayed_name": "Page introuvable",
             "head_title": "Vue Template - Description page introuvable",
             "meta": "Petite description ici pour page introuvable"
+        },
+        "languages": {
+            "displayed_name": "Langues"
         }
     }
 }

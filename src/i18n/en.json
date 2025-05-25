@@ -14,6 +14,9 @@
             "displayed_name": "Page Not found",
             "head_title": "Vue Template - Not Found Page Description",
             "meta": "Short description here for Not Found Page"
+        },
+        "languages": {
+            "displayed_name": "Languages"
         }
     }
 }
