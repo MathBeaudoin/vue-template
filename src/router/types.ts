@@ -17,6 +17,7 @@ export type RouteHead = {
 export type RouteInfo = {
     name: RouteNameValue;
     path: RoutePathValue;
+    displayedName: string;
     head: RouteHead;
     requiresAuth: boolean;
     hideOnAuth: boolean;

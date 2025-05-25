@@ -57,5 +57,5 @@ const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
 const isDarkTheme = computed(() => userSessionStore.isDarkTheme());
 const themeIcon = computed(() => (isDarkTheme.value ? SunIcon : MoonIcon));
 
-// const appbarDirectLinks = 
+// const appbarDirectLinks =
 </script>

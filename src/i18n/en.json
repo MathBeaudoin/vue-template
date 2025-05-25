@@ -1,1 +1,19 @@
-{}
+{
+    "navigation": {
+        "home": {
+            "displayed_name": "Dashboard",
+            "head_title": "Vue Template - Home Page Description",
+            "meta": "Short description here for Home Page"
+        },
+        "about": {
+            "displayed_name": "About",
+            "head_title": "Vue Template - About Page Description",
+            "meta": "Short description here for About Page"
+        },
+        "not_found": {
+            "displayed_name": "Page Not found",
+            "head_title": "Vue Template - Not Found Page Description",
+            "meta": "Short description here for Not Found Page"
+        }
+    }
+}
