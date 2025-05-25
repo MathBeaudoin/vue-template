@@ -1,5 +1,5 @@
-import type { GroupedRoutes, MappedRoutes, RouteInfo } from "@router/types";
-import { RouteNames, RoutePaths, RouteGroupes } from "@router/constants";
+import type { GroupedRoutes, MappedRoutes, RouteInfo } from "@/router/types";
+import { RouteNames, RoutePaths, RouteGroupes } from "@/router/constants";
 
 /**
  * The following types exist to facilitate the lookup of route info from its

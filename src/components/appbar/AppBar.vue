@@ -33,22 +33,22 @@
 </template>
 
 <script setup lang="ts">
-import { useUserSessionStore } from "@stores/user/userSessionStore";
+import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { computed } from "vue";
-import { MAPPED_ROUTES, CORE_ROUTES } from "@router/routes";
-import { RouteNames } from "@router/constants.ts";
+import { MAPPED_ROUTES, CORE_ROUTES } from "@/router/routes";
+import { RouteNames } from "@/router/constants.ts";
 import { Cog8ToothIcon } from "@heroicons/vue/24/outline";
 import { MoonIcon } from "@heroicons/vue/24/outline";
 import { SunIcon } from "@heroicons/vue/24/outline";
 import { UserIcon } from "@heroicons/vue/24/outline";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
 import { GlobeAmericasIcon } from "@heroicons/vue/24/outline";
-import Link from "@components/appbar/Link.vue";
-import SiteTitle from "@components/appbar/SiteTitle.vue";
-import DrawerTrigger from "@components/ui/drawer/DrawerTrigger.vue";
-import AppBarDrawer from "@components/appbar/AppBarDrawer.vue";
-import SecondaryItemIcon from "@components/appbar/SecondaryItemIcon.vue";
-import SecondaryItemLink from "@components/appbar/SecondaryItemLink.vue";
+import Link from "@/components/appbar/Link.vue";
+import SiteTitle from "@/components/appbar/SiteTitle.vue";
+import DrawerTrigger from "@/components/ui/drawer/DrawerTrigger.vue";
+import AppBarDrawer from "@/components/appbar/AppBarDrawer.vue";
+import SecondaryItemIcon from "@/components/appbar/SecondaryItemIcon.vue";
+import SecondaryItemLink from "@/components/appbar/SecondaryItemLink.vue";
 
 const userSessionStore = useUserSessionStore();
 

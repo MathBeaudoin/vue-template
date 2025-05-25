@@ -14,17 +14,4 @@ export default defineConfig({
         }) as PluginOption,
         tailwindcss(),
     ],
-    resolve: {
-        alias: {
-            "@": "/src",
-            "@assets": "/src/assets",
-            "@i18n": "/src/i18n",
-            "@logging": "/src/logging",
-            "@components": "/src/components",
-            "@pages": "/src/pages",
-            "@router": "/src/router",
-            "@scripts": "/src/scripts",
-            "@stores": "/src/stores",
-        },
-    },
 });

@@ -6,11 +6,11 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useUserSessionStore } from "@stores/user/userSessionStore";
+import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { storeToRefs } from "pinia";
 import { HeadSelector } from "@/router/headSelector.ts";
 import { useHead } from "@unhead/vue";
-import { i18n } from "@i18n/i18n";
+import { i18n } from "@/i18n/i18n";
 import { onMounted, ref } from "vue";
 import AppBar from "@/components/appbar/AppBar.vue";
 

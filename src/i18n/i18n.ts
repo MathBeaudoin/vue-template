@@ -1,6 +1,6 @@
 import { createI18n, type I18n } from "vue-i18n";
-import fr from "@i18n/fr.json";
-import en from "@i18n/en.json";
+import fr from "@/i18n/fr.json";
+import en from "@/i18n/en.json";
 
 export const i18n = createI18n({
     sync: true,

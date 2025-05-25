@@ -22,8 +22,8 @@ import DrawerContent from "@/components/ui/drawer/DrawerContent.vue";
 import DrawerTitle from "@/components/ui/drawer/DrawerTitle.vue";
 import DrawerDescription from "@/components/ui/drawer/DrawerDescription.vue";
 import DrawerHeader from "@/components/ui/drawer/DrawerHeader.vue";
-import { CORE_ROUTES } from "@router/routes";
-import Link from "@components/appbar/Link.vue";
+import { CORE_ROUTES } from "@/router/routes";
+import Link from "@/components/appbar/Link.vue";
 
 const props = defineProps({
     isAuthenticated: {

@@ -1,4 +1,4 @@
-import { RouteNames, RoutePaths } from "@router/constants";
+import { RouteNames, RoutePaths } from "@/router/constants";
 
 export type RouteNameValue = (typeof RouteNames)[keyof typeof RouteNames];
 

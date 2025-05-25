@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { i18n } from "@i18n/i18n";
-import type { Locale, Theme } from "@stores/user/types";
+import { i18n } from "@/i18n/i18n";
+import type { Locale, Theme } from "@/stores/user/types";
 
 export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({

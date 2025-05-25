@@ -4,15 +4,7 @@
         /* Import paths */
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"],
-            "@assets": ["./src/assets/*"],
-            "@components/*": ["./src/components/*"],
-            "@i18n/*": ["./src/i18n/*"],
-            "@logging/*": ["./src/logging/*"],
-            "@pages/*": ["./src/pages/*"],
-            "@router/*": ["./src/router/*"],
-            "@scripts/*": ["scripts/*"],
-            "@stores/*": ["./src/stores/*"]
+            "@/*": ["./src/*"]
         }
     },
     "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]

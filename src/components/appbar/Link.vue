@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteInfo } from "@router/types";
+import type { RouteInfo } from "@/router/types";
 import { computed, type PropType } from "vue";
 import { useRoute } from "vue-router";
-import { routeShouldBeAccessible } from "@router/util";
+import { routeShouldBeAccessible } from "@/router/util";
 
 const props = defineProps({
     routeInfo: {
