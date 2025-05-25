@@ -1,23 +1,25 @@
 import { defineStore } from "pinia";
-import { i18n } from "@/i18n/i18n";
-import type { Locale, Theme } from "@/stores/user/types";
+import type { Theme } from "@/stores/user/types";
+import type { SupportedLanguage, SupportedLocale } from "@/i18n/types";
+import { LanguageHandler } from "@/i18n/languageHandler";
 
 export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({
         theme: "light" as Theme,
-        locale: "en" as Locale,
+        locale: "en" as SupportedLocale,
+        languageHandler: new LanguageHandler(),
     }),
 
     actions: {
-        isAuthenticated() {
+        isAuthenticated(): boolean {
             return false;
         },
 
-        isDarkTheme() {
+        isDarkTheme(): boolean {
             return this.theme === "dark";
         },
 
-        changeTheme() {
+        changeTheme(): void {
             if (this.isDarkTheme()) {
                 this.theme = "light";
             } else {
@@ -25,17 +27,16 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             }
         },
 
-        changeLocale() {
-            if (this.locale === "fr") {
-                this.locale = "en";
-            } else {
-                this.locale = "fr";
+        changeLanguage(newLanguage: SupportedLanguage<any>): void {
+            const localeOrError = this.languageHandler.select(newLanguage);
+            if (localeOrError instanceof Error) {
+                return;
             }
 
-            i18n.global.locale.value = this.locale;
+            this.locale = localeOrError;
         },
 
-        refreshSession() {},
+        refreshSession(): void {},
     },
 
     persist: true,

@@ -26,7 +26,7 @@
 
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
 
-                <SecondaryItemIcon @click="userSessionStore.changeLocale" :icon="GlobeAmericasIcon" />
+                <SecondaryItemIcon @click="" :icon="GlobeAmericasIcon" />
             </nav>
         </div>
     </header>
