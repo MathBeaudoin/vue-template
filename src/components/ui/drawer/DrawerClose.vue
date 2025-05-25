@@ -3,17 +3,17 @@ import type { DrawerCloseProps } from "vaul-vue";
 import { DrawerClose } from "vaul-vue";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
 
-const props = defineProps<DrawerCloseProps>();
+const props = withDefaults(defineProps<DrawerCloseProps & { isProgrammaticClose?: boolean }>(), {
+    isProgrammaticClose: true,
+});
 </script>
 
 <template>
-    <!-- DEFAULT COMPONENT LOOK 
-    <DrawerClose data-slot="drawer-close" v-bind="props">
+    <DrawerClose v-if="isProgrammaticClose" data-slot="drawer-close" v-bind="props">
         <slot></slot>
-    </DrawerClose> 
-    -->
+    </DrawerClose>
 
-    <DrawerClose data-slot="drawer-close" v-bind="props">
+    <DrawerClose v-else data-slot="drawer-close" v-bind="props">
         <XMarkIcon class="close-drawer-icon" />
     </DrawerClose>
 </template>

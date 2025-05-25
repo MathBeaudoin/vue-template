@@ -32,7 +32,7 @@ const forwarded = useForwardPropsEmits(props, emits);
             <div
                 class="ml-auto hidden shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
             >
-                <DrawerClose />
+                <DrawerClose :is-programmatic-close="false" />
             </div>
             <slot></slot>
         </DrawerContent>
