@@ -1,30 +1,34 @@
 <template>
+    HANDLE AUTH
     <router-link
+        v-if="props.routeInfo.name"
         v-bind="$attrs"
-        :to="{ name: props.routeName }"
+        :to="{ name: props.routeInfo.name }"
         class="appbar-link"
         :class="{
-            'appbar-link-on-current-page': currentRoute.name == props.routeName,
-            'appbar-link-not-on-current-page': currentRoute.name != props.routeName,
+            'appbar-link-on-current-page': currentRoute.name == props.routeInfo.name,
+            'appbar-link-not-on-current-page': currentRoute.name != props.routeInfo.name,
         }"
     >
-        {{ props.displayedText }}
+        {{ props.routeInfo.displayedName }}
     </router-link>
 </template>
 
 <script setup lang="ts">
+import type { RouteInfo } from "@router/types";
+import type { PropType } from "vue";
 import { useRoute } from "vue-router";
 
 const currentRoute = useRoute();
 
 const props = defineProps({
-    displayedText: {
+    routeInfo: {
         required: true,
-        type: String,
+        type: Object as PropType<RouteInfo>,
     },
-    routeName: {
+    isAuthenticated: {
         required: true,
-        type: String,
+        type: Boolean,
     },
 });
 </script>

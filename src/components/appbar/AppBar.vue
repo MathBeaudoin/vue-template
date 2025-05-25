@@ -12,19 +12,15 @@
             </nav>
 
             <nav class="appbar-links">
-                <Link displayed-text="Home" :route-name="MAPPED_ROUTES[RouteNames.HOME].name" />
-
-                <Link displayed-text="About" :route-name="MAPPED_ROUTES[RouteNames.ABOUT].name" />
-
-                <Link
-                    v-if="isAuthenticated"
-                    displayed-text="Authenticated Dashboard"
-                    :route-name="MAPPED_ROUTES[RouteNames.NOT_FOUND].name"
-                />
+                <Link v-for="route in CORE_ROUTES" :route-info="route" :is-authenticated="isAuthenticated" />
             </nav>
 
             <nav class="appbar-secondary-items">
-                <SecondaryItemLink :icon="UserIcon" :route-name="MAPPED_ROUTES[RouteNames.NOT_FOUND].name" />
+                <SecondaryItemLink
+                    :icon="UserIcon"
+                    :route-info="MAPPED_ROUTES[RouteNames.HOME]"
+                    :is-authenticated="isAuthenticated"
+                />
 
                 <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
 
@@ -37,7 +33,7 @@
 <script setup lang="ts">
 import { useUserSessionStore } from "@stores/user/userSessionStore";
 import { computed } from "vue";
-import { MAPPED_ROUTES } from "@router/routes";
+import { MAPPED_ROUTES, CORE_ROUTES } from "@router/routes";
 import { RouteNames } from "@router/constants.ts";
 import { Cog8ToothIcon } from "@heroicons/vue/24/outline";
 import { MoonIcon } from "@heroicons/vue/24/outline";
@@ -56,6 +52,4 @@ const userSessionStore = useUserSessionStore();
 const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
 const isDarkTheme = computed(() => userSessionStore.isDarkTheme());
 const themeIcon = computed(() => (isDarkTheme.value ? SunIcon : MoonIcon));
-
-// const appbarDirectLinks =
 </script>

@@ -79,4 +79,4 @@ export const GROUPED_ROUTES: GroupedRoutes = {
 /**
  * Core routes to be displayed in the AppBar / its associated drawer on mobile.
  */
-export const CoreRoutes: RouteInfo[] = [MAPPED_ROUTES[RouteNames.HOME], MAPPED_ROUTES[RouteNames.ABOUT]] as const;
+export const CORE_ROUTES: RouteInfo[] = [MAPPED_ROUTES[RouteNames.HOME], MAPPED_ROUTES[RouteNames.ABOUT]] as const;
