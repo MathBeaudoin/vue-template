@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { ROUTES } from "@/router/routes";
+import { MAPPED_ROUTES } from "@/router/routes";
 import type { RouteInfo } from "@/router/types";
 
 function addStartingStringsToSiteMap() {
@@ -18,8 +18,8 @@ function addEndingStringsToSiteMap() {
 function addRouteStringsToSiteMap() {
     let routeStrings = ``;
 
-    Object.keys(ROUTES).forEach((route) => {
-        const info: RouteInfo = ROUTES[route as keyof typeof ROUTES];
+    Object.keys(MAPPED_ROUTES).forEach((route) => {
+        const info: RouteInfo = MAPPED_ROUTES[route as keyof typeof MAPPED_ROUTES];
         if (!info.addToSiteMap) {
             return;
         }

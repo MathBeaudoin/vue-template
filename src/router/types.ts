@@ -41,12 +41,12 @@ type OrphanRoutes = "not_found";
  * One-to-one correspondance with RouteGroups
  */
 type RoutesByGroup = {
-    "general": GeneralRoutes,
-    "orphan": OrphanRoutes,
+    general: GeneralRoutes;
+    orphan: OrphanRoutes;
 };
 
 export type GroupedRoutes = {
     [G in keyof RoutesByGroup]: {
         [K in RoutesByGroup[G]]: RouteInfo;
-    }
+    };
 };
