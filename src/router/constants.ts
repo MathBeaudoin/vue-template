@@ -7,3 +7,8 @@ export const RoutePaths = {
     HOME: "/",
     NOT_FOUND: "/not-found",
 } as const;
+
+export const RouteGroupes = {
+    GENERAL: "general",
+    ORPHAN: "orphan",
+} as const;

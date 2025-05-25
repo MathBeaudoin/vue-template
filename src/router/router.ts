@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { ROUTES } from "@router/routes";
+import { MAPPED_ROUTES } from "@router/routes";
 import { RouteNames } from "@router/constants.ts";
 import { useUserSessionStore } from "@stores/user/userSessionStore";
 import type { RouteNameValue } from "./types";
@@ -11,27 +11,27 @@ const router = createRouter({
     },
     routes: [
         {
-            path: ROUTES[RouteNames.HOME].path,
-            name: ROUTES[RouteNames.HOME].name,
+            path: MAPPED_ROUTES[RouteNames.HOME].path,
+            name: MAPPED_ROUTES[RouteNames.HOME].name,
             component: () => import("@pages/Home.vue"),
             beforeEnter: [],
         },
         {
-            path: ROUTES[RouteNames.NOT_FOUND].path,
-            name: ROUTES[RouteNames.NOT_FOUND].name,
+            path: MAPPED_ROUTES[RouteNames.NOT_FOUND].path,
+            name: MAPPED_ROUTES[RouteNames.NOT_FOUND].name,
             component: () => import("@pages/NotFound.vue"),
             beforeEnter: [],
         },
         {
             path: "/:catchAll(.*)",
-            redirect: ROUTES[RouteNames.NOT_FOUND].path,
+            redirect: MAPPED_ROUTES[RouteNames.NOT_FOUND].path,
         },
     ],
 });
 
 router.beforeEach(async (to, _ /*from*/, next) => {
     const isAuth = useUserSessionStore().isAuthenticated();
-    const toRoute = ROUTES[to.name as RouteNameValue];
+    const toRoute = MAPPED_ROUTES[to.name as RouteNameValue];
 
     // User needs to be authenticated
     if (toRoute.requiresAuth && !isAuth) {

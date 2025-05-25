@@ -1,7 +1,12 @@
-import type { AllRoutes } from "@router/types";
-import { RouteNames, RoutePaths } from "@router/constants";
+import type { GroupedRoutes, MappedRoutes } from "@router/types";
+import { RouteNames, RoutePaths, RouteGroupes } from "@router/constants";
 
-export const ROUTES: AllRoutes = {
+/**
+ * The following types exist to facilitate the lookup of route info from its
+ * name only. They SHOULD NOT be used in a use-case where you need to group 
+ * routes.
+ */
+export const MAPPED_ROUTES: MappedRoutes = {
     [RouteNames.HOME]: {
         name: RouteNames.HOME,
         path: RoutePaths.HOME,
@@ -33,5 +38,19 @@ export const ROUTES: AllRoutes = {
                 },
             ],
         },
+    },
+}
+
+/**
+ * The following types exist to facilitate the display of grouped routes. They
+ * SHOULD NOT be used in a use-case where you need to lookup a route from a 
+ * name only.
+ */
+export const GROUPED_ROUTES: GroupedRoutes = {
+    [RouteGroupes.GENERAL]: {
+        [RouteNames.HOME]: MAPPED_ROUTES[RouteNames.HOME]
+    },
+    [RouteGroupes.ORPHAN]: {
+        [RouteNames.NOT_FOUND]: MAPPED_ROUTES[RouteNames.NOT_FOUND]
     },
 };

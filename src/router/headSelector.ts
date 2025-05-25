@@ -1,7 +1,7 @@
 import type { RouteRecordNameGeneric } from "vue-router";
 import type { RouteHead, RouteNameValue } from "@router/types";
 import { RouteNames } from "@router/constants";
-import { ROUTES } from "@router/routes";
+import { MAPPED_ROUTES } from "@router/routes";
 
 export class HeadSelector {
     private isValidRouteName(name: any): boolean {
@@ -10,9 +10,9 @@ export class HeadSelector {
 
     public select(name: RouteRecordNameGeneric): RouteHead {
         if (this.isValidRouteName(name)) {
-            return ROUTES[name as RouteNameValue].head;
+            return MAPPED_ROUTES[name as RouteNameValue].head;
         } else {
-            return ROUTES[RouteNames.HOME].head;
+            return MAPPED_ROUTES[RouteNames.HOME].head;
         }
     }
 }

@@ -23,6 +23,30 @@ export type RouteInfo = {
     addToSiteMap: boolean;
 };
 
-export type AllRoutes = {
+export type MappedRoutes = {
     [K in RouteNameValue]: RouteInfo;
+};
+
+/**
+ * One-to-one correspondance with RouteNames
+ */
+type GeneralRoutes = "home";
+
+/**
+ * One-to-one correspondance with RouteNames
+ */
+type OrphanRoutes = "not_found";
+
+/**
+ * One-to-one correspondance with RouteGroups
+ */
+type RoutesByGroup = {
+    "general": GeneralRoutes,
+    "orphan": OrphanRoutes,
+};
+
+export type GroupedRoutes = {
+    [G in keyof RoutesByGroup]: {
+        [K in RoutesByGroup[G]]: RouteInfo;
+    }
 };
