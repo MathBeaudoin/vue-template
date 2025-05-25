@@ -2,7 +2,11 @@
     <header class="header">
         <div class="appbar-container">
             <nav class="appbar-main">
-                <SecondaryItemIcon id="hamburger" class="md:hidden" @click="" :icon="Bars3Icon" />
+                <AppBarDrawer>
+                    <DrawerTrigger>
+                        <SecondaryItemIcon id="hamburger" class="md:hidden" @click="" :icon="Bars3Icon" />
+                    </DrawerTrigger>
+                </AppBarDrawer>
 
                 <SiteTitle displayed-text="App Name" :route-name="ROUTES.home.name" />
             </nav>
@@ -41,6 +45,8 @@ import { UserIcon } from "@heroicons/vue/24/outline";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
 import Link from "@components/appbar/Link.vue";
 import SiteTitle from "@components/appbar/SiteTitle.vue";
+import DrawerTrigger from '@components/ui/drawer/DrawerTrigger.vue';
+import AppBarDrawer from "@components/appbar/AppBarDrawer.vue";
 import SecondaryItemIcon from "@components/appbar/SecondaryItemIcon.vue";
 import SecondaryItemLink from "@components/appbar/SecondaryItemLink.vue";
 

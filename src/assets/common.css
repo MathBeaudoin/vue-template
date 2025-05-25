@@ -9,3 +9,7 @@
 */
 @media screen and (min-width: 600px) {
 }
+
+.close-drawer-icon {
+    @apply w-5 h-5 px-1 py-1 ml-auto cursor-pointer;
+}
