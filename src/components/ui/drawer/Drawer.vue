@@ -1,9 +1,3 @@
-<template>
-    <DrawerRoot data-slot="drawer" v-bind="forwarded">
-        <slot></slot>
-    </DrawerRoot>
-</template>
-
 <script setup lang="ts">
 import type { DrawerRootEmits, DrawerRootProps } from "vaul-vue";
 import { useForwardPropsEmits } from "reka-ui";
@@ -18,3 +12,9 @@ const emits = defineEmits<DrawerRootEmits>();
 
 const forwarded = useForwardPropsEmits(props, emits) as ComputedRef<Record<string, any>>;
 </script>
+
+<template>
+    <DrawerRoot data-slot="drawer" v-bind="forwarded">
+        <slot></slot>
+    </DrawerRoot>
+</template>

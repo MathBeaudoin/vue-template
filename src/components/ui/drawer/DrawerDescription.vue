@@ -1,13 +1,3 @@
-<template>
-    <DrawerDescription
-        data-slot="drawer-description"
-        v-bind="delegatedProps"
-        :class="cn('text-muted-foreground text-sm', props.class)"
-    >
-        <slot></slot>
-    </DrawerDescription>
-</template>
-
 <script setup lang="ts">
 import type { DrawerDescriptionProps } from "vaul-vue";
 import type { HTMLAttributes } from "vue";
@@ -19,3 +9,13 @@ const props = defineProps<DrawerDescriptionProps & { class?: HTMLAttributes["cla
 
 const delegatedProps = reactiveOmit(props, "class");
 </script>
+
+<template>
+    <DrawerDescription
+        data-slot="drawer-description"
+        v-bind="delegatedProps"
+        :class="cn('text-muted-foreground text-sm', props.class)"
+    >
+        <slot></slot>
+    </DrawerDescription>
+</template>

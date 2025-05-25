@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import type { DialogContentEmits, DialogContentProps } from "reka-ui";
+import type { HTMLAttributes } from "vue";
+import { useForwardPropsEmits } from "reka-ui";
+import { DrawerContent, DrawerPortal } from "vaul-vue";
+import { cn } from "@/lib/utils";
+import { DrawerOverlay, DrawerClose } from "@/components/ui/drawer";
+
+const props = defineProps<DialogContentProps & { class?: HTMLAttributes["class"] }>();
+const emits = defineEmits<DialogContentEmits>();
+
+const forwarded = useForwardPropsEmits(props, emits);
+</script>
+
 <template>
     <DrawerPortal>
         <DrawerOverlay />
@@ -24,18 +38,3 @@
         </DrawerContent>
     </DrawerPortal>
 </template>
-
-<script setup lang="ts">
-import type { DialogContentEmits, DialogContentProps } from "reka-ui";
-import type { HTMLAttributes } from "vue";
-import { useForwardPropsEmits } from "reka-ui";
-import { DrawerContent, DrawerPortal } from "vaul-vue";
-import { cn } from "@/lib/utils";
-import DrawerOverlay from "./DrawerOverlay.vue";
-import DrawerClose from "@/components/ui/drawer/DrawerClose.vue";
-
-const props = defineProps<DialogContentProps & { class?: HTMLAttributes["class"] }>();
-const emits = defineEmits<DialogContentEmits>();
-
-const forwarded = useForwardPropsEmits(props, emits);
-</script>
