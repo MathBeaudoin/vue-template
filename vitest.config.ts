@@ -17,6 +17,8 @@ export default defineConfig({
                 "**/*.config.ts", // All other config files
                 "dist/**", // Build
                 "src/i18n/**", // Nothing to test here
+                "**/types.ts", // Don't test directly
+                "**/constants.ts", // Don't test directly
             ],
         },
     },
