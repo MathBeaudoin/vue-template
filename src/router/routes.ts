@@ -23,6 +23,22 @@ export const MAPPED_ROUTES: MappedRoutes = {
             ],
         },
     },
+    [RouteNames.ABOUT]: {
+        name: RouteNames.ABOUT,
+        path: RoutePaths.ABOUT,
+        requiresAuth: false,
+        hideOnAuth: false,
+        addToSiteMap: true,
+        head: {
+            title: "Vue Template - About Page Description",
+            meta: [
+                {
+                    name: "description",
+                    content: "Add a short description here for the about page.",
+                },
+            ],
+        },
+    },
     [RouteNames.NOT_FOUND]: {
         name: RouteNames.NOT_FOUND,
         path: RoutePaths.NOT_FOUND,
@@ -49,6 +65,7 @@ export const MAPPED_ROUTES: MappedRoutes = {
 export const GROUPED_ROUTES: GroupedRoutes = {
     [RouteGroupes.GENERAL]: {
         [RouteNames.HOME]: MAPPED_ROUTES[RouteNames.HOME],
+        [RouteNames.ABOUT]:  MAPPED_ROUTES[RouteNames.ABOUT],
     },
     [RouteGroupes.ORPHAN]: {
         [RouteNames.NOT_FOUND]: MAPPED_ROUTES[RouteNames.NOT_FOUND],

@@ -1,9 +1,6 @@
 <template>
-    <h1 class="text-3xl font-bold underline funky-title">Hello world!</h1>
-
-    <HelloWorld msg="Vite + Vue" />
+    <h1 class="text-3xl font-bold underline funky-title">Home</h1>
 </template>
 
 <script setup lang="ts">
-import HelloWorld from "@components/HelloWorld.vue";
 </script>

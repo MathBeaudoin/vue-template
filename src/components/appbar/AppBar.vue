@@ -12,9 +12,9 @@
             </nav>
 
             <nav class="appbar-links">
-                <Link displayed-text="Dashboard" :route-name="MAPPED_ROUTES[RouteNames.HOME].name" />
+                <Link displayed-text="Home" :route-name="MAPPED_ROUTES[RouteNames.HOME].name" />
 
-                <Link displayed-text="About" :route-name="MAPPED_ROUTES[RouteNames.NOT_FOUND].name" />
+                <Link displayed-text="About" :route-name="MAPPED_ROUTES[RouteNames.ABOUT].name" />
 
                 <Link
                     v-if="isAuthenticated"
@@ -56,4 +56,6 @@ const userSessionStore = useUserSessionStore();
 const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
 const isDarkTheme = computed(() => userSessionStore.isDarkTheme());
 const themeIcon = computed(() => (isDarkTheme.value ? SunIcon : MoonIcon));
+
+// const appbarDirectLinks = 
 </script>

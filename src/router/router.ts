@@ -17,6 +17,12 @@ const router = createRouter({
             beforeEnter: [],
         },
         {
+            path: MAPPED_ROUTES[RouteNames.ABOUT].path,
+            name: MAPPED_ROUTES[RouteNames.ABOUT].name,
+            component: () => import("@pages/About.vue"),
+            beforeEnter: [],
+        },
+        {
             path: MAPPED_ROUTES[RouteNames.NOT_FOUND].path,
             name: MAPPED_ROUTES[RouteNames.NOT_FOUND].name,
             component: () => import("@pages/NotFound.vue"),

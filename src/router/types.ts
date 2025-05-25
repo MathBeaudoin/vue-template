@@ -30,7 +30,7 @@ export type MappedRoutes = {
 /**
  * One-to-one correspondance with RouteNames
  */
-type GeneralRoutes = "home";
+type GeneralRoutes = "home" | "about";
 
 /**
  * One-to-one correspondance with RouteNames
