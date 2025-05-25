@@ -17,12 +17,10 @@
                     :disabled="isCurrentLocale(language.locale)"
                 >
                     <div class="w-4">
-                        <CheckIcon v-if="isCurrentLocale(language.locale)"/>
+                        <CheckIcon v-if="isCurrentLocale(language.locale)" />
                     </div>
-                    
-                    <div>
-                      {{ language.locale.toLocaleUpperCase() }} - {{ language.label }}
-                    </div>
+
+                    <div>{{ language.locale.toLocaleUpperCase() }} - {{ language.label }}</div>
                 </DropdownMenuItem>
             </DropdownMenuGroup>
         </DropdownMenuContent>
@@ -50,6 +48,6 @@ const userSessionStore = useUserSessionStore();
 const { locale } = storeToRefs(userSessionStore);
 
 function isCurrentLocale(comparedLocale: SupportedLocale) {
-  return locale.value === comparedLocale;
+    return locale.value === comparedLocale;
 }
 </script>
