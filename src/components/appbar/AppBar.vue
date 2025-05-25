@@ -25,6 +25,8 @@
                 <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
 
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
+
+                <SecondaryItemIcon @click="userSessionStore.changeLocale" :icon="GlobeAmericasIcon" />
             </nav>
         </div>
     </header>
@@ -40,6 +42,7 @@ import { MoonIcon } from "@heroicons/vue/24/outline";
 import { SunIcon } from "@heroicons/vue/24/outline";
 import { UserIcon } from "@heroicons/vue/24/outline";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
+import { GlobeAmericasIcon } from "@heroicons/vue/24/outline";
 import Link from "@components/appbar/Link.vue";
 import SiteTitle from "@components/appbar/SiteTitle.vue";
 import DrawerTrigger from "@components/ui/drawer/DrawerTrigger.vue";

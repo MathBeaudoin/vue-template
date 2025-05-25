@@ -22,7 +22,8 @@ const finishedAuthentication = ref<Boolean>(false);
 
 useHead(() => {
     const headSelector = new HeadSelector();
-    return headSelector.select(currentRoute.name);
+    const head = headSelector.select(currentRoute.name);
+    return headSelector.translate(head);
 });
 
 onMounted(() => {
