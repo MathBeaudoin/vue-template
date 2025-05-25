@@ -29,7 +29,7 @@ describe("i18n/languageHandler", () => {
         expect(locale).not.toBe(i18n.global.locale.value);
     });
 
-    test("whenSelectingInvalidLanguage_thenErrorIsThrown", () => {
+    test("whenSelectingInvalidLanguage_thenErrorIsReturned", () => {
         expect(languageHandler.select(ANY_INVALID_LANGUAGE)).toBeInstanceOf(Error);
     });
 });

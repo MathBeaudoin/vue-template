@@ -2,7 +2,7 @@ import { expect, test, describe } from "vitest";
 import { routeShouldBeAccessible } from "@/router/util";
 
 describe("router/util", () => {
-    test("whenRouteRequiresAuth_andIsHiddenOnAuth_thenThrows", () => {
+    test("whenRouteRequiresAuth_andIsHiddenOnAuth_thenErrorIsReturned", () => {
         const userIsAuthenticated = true;
         const routeRequiresAuthentication = true;
         const routeHiddenOnAuthentication = true;

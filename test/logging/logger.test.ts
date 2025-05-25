@@ -31,4 +31,14 @@ describe("logging/logger", () => {
 
         expect(consoleSpy).toHaveBeenCalledWith(ANY_DATA);
     });
+
+    test("whenUsingLoggingInUnexpectedMode_thenShouldNotLogToConsole", () => {
+        const envMode: any = "unexpected_env_mode";
+        vi.stubEnv("MODE", envMode);
+
+        const consoleSpy = vi.spyOn(console, "log");
+        POP_LOG_DEBUG(ANY_DATA);
+
+        expect(consoleSpy).not.toHaveBeenCalled();
+    });
 });
