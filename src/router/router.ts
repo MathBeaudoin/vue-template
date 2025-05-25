@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import { MAPPED_ROUTES } from "@router/routes";
 import { RouteNames } from "@router/constants.ts";
 import { useUserSessionStore } from "@stores/user/userSessionStore";
-import type { RouteNameValue } from "./types";
+import type { RouteNameValue } from "@router/types";
+import { routeShouldBeAccessible } from "@router/util";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,16 +37,11 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _ /*from*/, next) => {
-    const isAuth = useUserSessionStore().isAuthenticated();
-    const toRoute = MAPPED_ROUTES[to.name as RouteNameValue];
+    const userIsAuthenticated = useUserSessionStore().isAuthenticated();
+    const routeRequiresAuthentication = MAPPED_ROUTES[to.name as RouteNameValue].requiresAuth;
+    const routeHiddenOnAuthentication = MAPPED_ROUTES[to.name as RouteNameValue].hideOnAuth;
 
-    // User needs to be authenticated
-    if (toRoute.requiresAuth && !isAuth) {
-        return next({ name: RouteNames.HOME });
-    }
-
-    // User needs to not be authenticated
-    if (toRoute.hideOnAuth && isAuth) {
+    if (!routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication)) {
         return next({ name: RouteNames.HOME });
     }
 

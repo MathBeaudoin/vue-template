@@ -1,7 +1,6 @@
 <template>
-    HANDLE AUTH
     <router-link
-        v-if="props.routeInfo.name"
+        v-if="showRoute"
         v-bind="$attrs"
         :to="{ name: props.routeInfo.name }"
         class="appbar-link"
@@ -16,10 +15,9 @@
 
 <script setup lang="ts">
 import type { RouteInfo } from "@router/types";
-import type { PropType } from "vue";
+import { computed, type PropType } from "vue";
 import { useRoute } from "vue-router";
-
-const currentRoute = useRoute();
+import { routeShouldBeAccessible } from "@router/util";
 
 const props = defineProps({
     routeInfo: {
@@ -30,5 +28,13 @@ const props = defineProps({
         required: true,
         type: Boolean,
     },
+});
+
+const currentRoute = useRoute();
+const showRoute = computed(() => {
+    const userIsAuthenticated = props.isAuthenticated;
+    const routeRequiresAuthentication = props.routeInfo.requiresAuth;
+    const routeHiddenOnAuthentication = props.routeInfo.hideOnAuth;
+    return routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication);
 });
 </script>

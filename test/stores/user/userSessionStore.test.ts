@@ -2,7 +2,7 @@ import { expect, test, describe, beforeEach } from "vitest";
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { createPinia, setActivePinia } from "pinia";
 
-describe("userSessionStore", () => {
+describe("stores/userSessionStore", () => {
     const getStoreInstance = () => {
         return useUserSessionStore();
     };
