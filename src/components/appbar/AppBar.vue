@@ -2,7 +2,7 @@
     <header class="header">
         <div class="appbar-container">
             <nav class="appbar-main">
-                <AppBarDrawer>
+                <AppBarDrawer :is-authenticated="isAuthenticated">
                     <DrawerTrigger>
                         <SecondaryItemIcon id="hamburger" class="md:hidden" @click="" :icon="Bars3Icon" />
                     </DrawerTrigger>

@@ -11,5 +11,5 @@
 }
 
 .close-drawer-icon {
-    @apply w-5 h-5 px-1 py-1 ml-auto cursor-pointer;
+    @apply w-7 h-7 px-1 py-1 ml-auto cursor-pointer;
 }
