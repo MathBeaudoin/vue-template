@@ -2,10 +2,14 @@ import { expect, test, describe, beforeEach, vi } from "vitest";
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { createPinia, setActivePinia } from "pinia";
 import { LanguageService } from "@/services/i18n/languageService";
+import { ThemeService } from "@/services/themes/themeService";
 
 describe("stores/userSessionStore", () => {
     const ANY_SUPPORTED_LANGUAGE: any = {
         locale: "any_locale",
+    };
+    const ANY_SUPPORTED_THEME: any = {
+        label: "any_theme",
     };
 
     const getStoreInstance = () => {
@@ -23,6 +27,64 @@ describe("stores/userSessionStore", () => {
         expect(store.isAuthenticated()).toBeFalsy();
     });
 
+    test("whenChangingLanguage_thenLanguageServiceSelectsNewLanguage", () => {
+        const store = getStoreInstance();
+
+        const languageServiceSpy = vi.spyOn(LanguageService, "selectLanguage");
+
+        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
+
+        expect(languageServiceSpy).toHaveBeenCalledExactlyOnceWith(ANY_SUPPORTED_LANGUAGE);
+    });
+
+    test("whenChangingLanguage_thenLocaleIsUpdated", () => {
+        const store = getStoreInstance();
+        vi.spyOn(LanguageService, "isValidLanguage").mockReturnValue(true);
+
+        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
+        const locale = store.locale;
+
+        expect(locale).toBe(ANY_SUPPORTED_LANGUAGE.locale);
+    });
+
+    test("givenErrorOnLanguageService_whenChangingLanguage_thenLocaleIsNotModified", () => {
+        const store = getStoreInstance();
+
+        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
+        const locale = store.locale;
+
+        expect(locale).not.toBe(ANY_SUPPORTED_LANGUAGE.locale);
+    });
+
+    test("whenChangingTheme_thenThemeServiceSelectsNewTheme", () => {
+        const store = getStoreInstance();
+
+        const themeServiceSpy = vi.spyOn(ThemeService, "selectTheme");
+
+        store.changeTheme(ANY_SUPPORTED_THEME);
+
+        expect(themeServiceSpy).toHaveBeenCalledExactlyOnceWith(ANY_SUPPORTED_THEME);
+    });
+
+    test("whenChangingTheme_thenThemeIsUpdated", () => {
+        const store = getStoreInstance();
+        vi.spyOn(ThemeService, "isValidTheme").mockReturnValue(true);
+
+        store.changeTheme(ANY_SUPPORTED_THEME);
+        const theme = store.theme;
+
+        expect(theme).toBe(ANY_SUPPORTED_THEME.label);
+    });
+
+    test("givenErrorOnThemeService_whenChangingTheme_thenThemeIsNotModified", () => {
+        const store = getStoreInstance();
+
+        store.changeTheme(ANY_SUPPORTED_THEME);
+        const theme = store.theme;
+
+        expect(theme).not.toBe(ANY_SUPPORTED_THEME.theme);
+    });
+
     test("whenCheckingThemeIsDark_thenBasesResponseOnCurrentTheme", () => {
         const store = getStoreInstance();
 
@@ -36,48 +98,6 @@ describe("stores/userSessionStore", () => {
     test("whenCheckingDefaultTheme_thenIsLight", () => {
         const store = getStoreInstance();
         expect(store.isDarkTheme()).toBeFalsy();
-    });
-
-    test("whenChangingTheme_thenShouldSwitchToOpposingTheme", () => {
-        const store = getStoreInstance();
-
-        const firstTheme = store.theme;
-        store.changeTheme();
-        expect(store.theme).not.toBe(firstTheme);
-
-        const secondTheme = store.theme;
-        store.changeTheme();
-        expect(store.theme).not.toBe(secondTheme);
-
-        expect(firstTheme).not.toBe(secondTheme);
-    });
-
-    test("whenChangingLanguage_thenLanguageHandlerSelectsNewLanguage", () => {
-        const store = getStoreInstance();
-
-        const languageHandlerSpy = vi.spyOn(LanguageService, "selectLanguage");
-
-        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
-
-        expect(languageHandlerSpy).toHaveBeenCalledExactlyOnceWith(ANY_SUPPORTED_LANGUAGE);
-    });
-
-    test("whenChangingLanguage_thenLocaleIsUpdated", () => {
-        const store = getStoreInstance();
-        vi.spyOn(LanguageService, "isValidLanguage").mockReturnValue(true);
-
-        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
-        const locale = store.locale;
-
-        expect(locale).toBe(ANY_SUPPORTED_LANGUAGE.locale);
-    });
-
-    test("givenErrorOnLanguageHandler_whenChangingLanguage_thenLocaleIsNotModified", () => {
-        const store = getStoreInstance();
-
-        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
-        const locale = store.locale;
-
-        expect(locale).not.toBe(ANY_SUPPORTED_LANGUAGE.locale);
+        expect(store.theme).toBe("light");
     });
 });

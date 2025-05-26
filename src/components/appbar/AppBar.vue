@@ -24,7 +24,7 @@
 
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
 
-                <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
+                <SecondaryItemIcon @click="userSessionStore.changeTheme(nextTheme)" :icon="themeIcon" />
 
                 <LanguageMenu />
             </nav>
@@ -49,10 +49,15 @@ import AppBarDrawer from "@/components/appbar/AppBarDrawer.vue";
 import SecondaryItemIcon from "@/components/appbar/SecondaryItemIcon.vue";
 import SecondaryItemLink from "@/components/appbar/SecondaryItemLink.vue";
 import LanguageMenu from "@/components/appbar/LanguageMenu.vue";
+import { SUPPORTED_THEMES } from "@/services/themes/constants";
 
 const userSessionStore = useUserSessionStore();
 
 const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
 const isDarkTheme = computed(() => userSessionStore.isDarkTheme());
 const themeIcon = computed(() => (isDarkTheme.value ? SunIcon : MoonIcon));
+
+const nextTheme = computed(() => {
+    return isDarkTheme.value ? SUPPORTED_THEMES["light"] : SUPPORTED_THEMES["dark"];
+});
 </script>
