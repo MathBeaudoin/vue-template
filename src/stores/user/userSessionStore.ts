@@ -7,10 +7,13 @@ import { POP_LOG_DEBUG } from "@/logging/logger";
 import { ThemeService } from "@/services/themes/themeService";
 import { SUPPORTED_THEMES } from "@/services/themes/constants";
 
+const DEFAULT_LOCALE: SupportedLocale = "fr";
+const DEFAULT_THEME: SupportedThemeLabel = "light";
+
 export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({
-        theme: "light" as SupportedThemeLabel,
-        locale: "en" as SupportedLocale,
+        theme: DEFAULT_THEME as SupportedThemeLabel,
+        locale: DEFAULT_LOCALE as SupportedLocale,
     }),
 
     actions: {
@@ -40,10 +43,18 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             this.locale = localeOrError;
         },
 
+        getCurrentLanguage(): SupportedLanguage<any> {
+            return SUPPORTED_LANGUAGES[this.locale];
+        },
+
+        getCurrentTheme(): SupportedTheme<any> {
+            return SUPPORTED_THEMES[this.theme];
+        },
+
         refreshSession(): void {
             POP_LOG_DEBUG("UserSessionStore - refreshSession");
-            LanguageService.selectLanguage(SUPPORTED_LANGUAGES[this.locale]);
-            ThemeService.selectTheme(SUPPORTED_THEMES[this.theme]);
+            LanguageService.selectLanguage(this.getCurrentLanguage());
+            ThemeService.selectTheme(this.getCurrentTheme());
         },
     },
 

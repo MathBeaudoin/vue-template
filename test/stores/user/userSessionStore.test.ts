@@ -29,7 +29,6 @@ describe("stores/userSessionStore", () => {
 
     test("whenChangingLanguage_thenLanguageServiceSelectsNewLanguage", () => {
         const store = getStoreInstance();
-
         const languageServiceSpy = vi.spyOn(LanguageService, "selectLanguage");
 
         store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
@@ -58,7 +57,6 @@ describe("stores/userSessionStore", () => {
 
     test("whenChangingTheme_thenThemeServiceSelectsNewTheme", () => {
         const store = getStoreInstance();
-
         const themeServiceSpy = vi.spyOn(ThemeService, "selectTheme");
 
         store.changeTheme(ANY_SUPPORTED_THEME);
@@ -99,5 +97,16 @@ describe("stores/userSessionStore", () => {
         const store = getStoreInstance();
         expect(store.isDarkTheme()).toBeFalsy();
         expect(store.theme).toBe("light");
+    });
+
+    test("whenRefreshingUserSession_thenSelectsThemeAndLanguage", () => {
+        const languageServiceSpy = vi.spyOn(LanguageService, "selectLanguage");
+        const themeServiceSpy = vi.spyOn(ThemeService, "selectTheme");
+        const store = getStoreInstance();
+
+        store.refreshSession();
+
+        expect(languageServiceSpy).toHaveBeenCalledOnce();
+        expect(themeServiceSpy).toHaveBeenCalledOnce();
     });
 });
