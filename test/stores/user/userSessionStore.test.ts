@@ -1,6 +1,7 @@
 import { expect, test, describe, beforeEach, vi } from "vitest";
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { createPinia, setActivePinia } from "pinia";
+import { LanguageService } from "@/services/i18n/languageService";
 
 describe("stores/userSessionStore", () => {
     const ANY_SUPPORTED_LANGUAGE: any = {
@@ -54,7 +55,7 @@ describe("stores/userSessionStore", () => {
     test("whenChangingLanguage_thenLanguageHandlerSelectsNewLanguage", () => {
         const store = getStoreInstance();
 
-        const languageHandlerSpy = vi.spyOn(store.languageHandler, "select");
+        const languageHandlerSpy = vi.spyOn(LanguageService, "selectLanguage");
 
         store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
 
@@ -63,7 +64,7 @@ describe("stores/userSessionStore", () => {
 
     test("whenChangingLanguage_thenLocaleIsUpdated", () => {
         const store = getStoreInstance();
-        vi.spyOn(store.languageHandler, "isValidLanguage").mockReturnValue(true);
+        vi.spyOn(LanguageService, "isValidLanguage").mockReturnValue(true);
 
         store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
         const locale = store.locale;

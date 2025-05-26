@@ -1,20 +1,28 @@
-import { i18n } from "@/services/i18n/i18n";
+import { I18nInstance } from "@/services/i18n/i18nInstance";
 import type { SupportedLanguage, SupportedLocale } from "@/services/i18n/types";
 import { SUPPORTED_LANGUAGES } from "@/services/i18n/constants";
 
 export class LanguageService {
-    public isValidLanguage(language: SupportedLanguage<any>): boolean {
+    private static i18nInstance = new I18nInstance();
+
+    public static isValidLanguage(language: SupportedLanguage<any>): boolean {
         return Object.keys(SUPPORTED_LANGUAGES).includes(language.locale);
     }
 
-    public select(language: SupportedLanguage<any>): Error | SupportedLocale {
+    public static getI18nInstance(): I18nInstance {
+        return this.i18nInstance;
+    }
+
+    public static selectLanguage(language: SupportedLanguage<any>): Error | SupportedLocale {
         if (!this.isValidLanguage(language)) {
             return new Error();
         }
 
-        const finalLocale: SupportedLocale = language.locale;
-        i18n.global.locale.value = finalLocale;
+        this.i18nInstance.setLocale(language.locale);
+        return language.locale;
+    }
 
-        return finalLocale;
+    public static get $t() {
+        return this.i18nInstance.$t.bind(this.i18nInstance);
     }
 }

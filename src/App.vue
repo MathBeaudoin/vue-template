@@ -10,9 +10,10 @@ import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { storeToRefs } from "pinia";
 import { HeadSelector } from "@/router/headSelector.ts";
 import { useHead } from "@unhead/vue";
-import { i18n } from "@/services/i18n/i18n";
+import { LanguageService } from "@/services/i18n/languageService";
 import { onMounted, ref } from "vue";
 import AppBar from "@/components/appbar/AppBar.vue";
+import { SUPPORTED_LANGUAGES } from "./services/i18n/constants";
 
 const currentRoute = useRoute();
 const userSessionStore = useUserSessionStore();
@@ -28,7 +29,8 @@ useHead(() => {
 
 onMounted(() => {
     // Do everything needed on app load
-    i18n.global.locale.value = locale.value;
+    // TODO: Is it needed?
+    LanguageService.selectLanguage(SUPPORTED_LANGUAGES[locale.value]);
 
     userSessionStore.refreshSession();
 

@@ -7,7 +7,6 @@ export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({
         theme: "light" as Theme,
         locale: "en" as SupportedLocale,
-        languageHandler: new LanguageService(),
     }),
 
     actions: {
@@ -28,7 +27,7 @@ export const useUserSessionStore = defineStore("userSessionStore", {
         },
 
         changeLanguage(newLanguage: SupportedLanguage<any>): void {
-            const localeOrError = this.languageHandler.select(newLanguage);
+            const localeOrError = LanguageService.selectLanguage(newLanguage);
             if (localeOrError instanceof Error) {
                 return;
             }

@@ -23,7 +23,7 @@
                 />
 
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
-                
+
                 <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
 
                 <LanguageMenu />
