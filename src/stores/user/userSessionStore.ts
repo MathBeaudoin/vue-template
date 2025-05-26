@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
-import type { Theme } from "@/stores/user/types";
+import type { SupportedThemeLabel } from "@/services/themes/types";
 import type { SupportedLanguage, SupportedLocale } from "@/services/i18n/types";
 import { LanguageService } from "@/services/i18n/languageService";
 
 export const useUserSessionStore = defineStore("userSessionStore", {
     state: () => ({
-        theme: "light" as Theme,
+        theme: "light" as SupportedThemeLabel,
         locale: "en" as SupportedLocale,
     }),
 
