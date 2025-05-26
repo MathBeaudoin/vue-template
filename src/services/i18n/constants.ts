@@ -1,4 +1,4 @@
-import type { SupportedLanguages } from "@/i18n/types";
+import type { SupportedLanguages } from "@/services/i18n/types";
 
 export const SUPPORTED_LANGUAGES: SupportedLanguages = {
     fr: {

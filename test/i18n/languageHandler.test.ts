@@ -1,9 +1,9 @@
 import { expect, test, describe, beforeEach, vi } from "vitest";
-import { LanguageHandler } from "@/i18n/languageHandler";
-import { i18n } from "@/i18n/i18n";
+import { LanguageService } from "@/services/i18n/languageService";
+import { i18n } from "@/services/i18n/i18n";
 
 describe("i18n/languageHandler", () => {
-    let languageHandler: LanguageHandler;
+    let languageHandler: LanguageService;
     const OTHER_SUPPORTED_LANGUAGE: any = {
         locale: "fr",
     };
@@ -11,7 +11,7 @@ describe("i18n/languageHandler", () => {
 
     beforeEach(() => {
         vi.restoreAllMocks();
-        languageHandler = new LanguageHandler();
+        languageHandler = new LanguageService();
     });
 
     test("whenSelectingOtherSupportedLanguage_thenLocaleIsChangedAndReturned", () => {

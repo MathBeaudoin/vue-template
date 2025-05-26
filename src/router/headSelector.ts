@@ -2,7 +2,7 @@ import type { RouteRecordNameGeneric } from "vue-router";
 import type { RouteHead, RouteNameValue } from "@/router/types";
 import { RouteNames } from "@/router/constants";
 import { MAPPED_ROUTES } from "@/router/routes";
-import { $t } from "@/i18n/i18n";
+import { $t } from "@/services/i18n/i18n";
 
 export class HeadSelector {
     private isValidRouteName(name: any): boolean {

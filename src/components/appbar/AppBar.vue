@@ -22,9 +22,9 @@
                     :is-authenticated="isAuthenticated"
                 />
 
-                <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
-
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
+                
+                <SecondaryItemIcon @click="userSessionStore.changeTheme" :icon="themeIcon" />
 
                 <LanguageMenu />
             </nav>

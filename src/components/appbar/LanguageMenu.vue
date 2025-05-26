@@ -39,10 +39,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { GlobeAmericasIcon, CheckIcon } from "@heroicons/vue/24/outline";
 import SecondaryItemIcon from "@/components/appbar/SecondaryItemIcon.vue";
-import { SUPPORTED_LANGUAGES } from "@/i18n/constants";
+import { SUPPORTED_LANGUAGES } from "@/services/i18n/constants";
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { storeToRefs } from "pinia";
-import type { SupportedLocale } from "@/i18n/types";
+import type { SupportedLocale } from "@/services/i18n/types";
 
 const userSessionStore = useUserSessionStore();
 const { locale } = storeToRefs(userSessionStore);

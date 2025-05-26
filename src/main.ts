@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "@/App.vue";
 import router from "@/router/router";
-import { i18n } from "@/i18n/i18n";
+import { i18n } from "@/services/i18n/i18n";
 import { createPinia } from "pinia";
 import piniaPluginPersistedState from "pinia-plugin-persistedstate";
 import "@/assets/styles.css";
