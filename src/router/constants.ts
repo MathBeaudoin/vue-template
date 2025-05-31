@@ -5,12 +5,16 @@ export const RouteNames = {
 } as const;
 
 export const RoutePaths = {
-    HOME: "/",
-    ABOUT: "/about",
-    NOT_FOUND: "/not-found",
-} as const;
-
-export const RouteGroupes = {
-    GENERAL: "general",
-    ORPHAN: "orphan",
+    HOME: {
+        en: "/",
+        fr: "/",
+    },
+    ABOUT: {
+        en: "/about",
+        fr: "/a-propos",
+    },
+    NOT_FOUND: {
+        en: "/not-found",
+        fr: "/page-introuvable",
+    },
 } as const;

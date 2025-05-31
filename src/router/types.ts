@@ -1,4 +1,5 @@
 import { RouteNames, RoutePaths } from "@/router/constants";
+import type { SupportedLocale } from "@/services/i18n/types";
 
 export type RouteNameValue = (typeof RouteNames)[keyof typeof RouteNames];
 
@@ -16,7 +17,9 @@ export type RouteHead = {
 
 export type RouteInfo = {
     name: RouteNameValue;
-    path: RoutePathValue;
+    path: {
+        [Locale in SupportedLocale]: RoutePathValue[Locale];
+    };
     displayedName: string;
     head: RouteHead;
     requiresAuth: boolean;
@@ -31,23 +34,20 @@ export type MappedRoutes = {
 /**
  * One-to-one correspondance with RouteNames
  */
-type GeneralRoutes = "home" | "about";
+type GeneralRoutes = typeof RouteNames.HOME | typeof RouteNames.ABOUT;
 
 /**
  * One-to-one correspondance with RouteNames
  */
-type OrphanRoutes = "not_found";
+type OrphanRoutes = typeof RouteNames.NOT_FOUND;
 
-/**
- * One-to-one correspondance with RouteGroups
- */
-type RoutesByGroup = {
-    general: GeneralRoutes;
-    orphan: OrphanRoutes;
+type MatchedGroupIdentifiers = {
+    GENERAL: GeneralRoutes;
+    ORPHAN: OrphanRoutes;
 };
 
 export type GroupedRoutes = {
-    [G in keyof RoutesByGroup]: {
-        [K in RoutesByGroup[G]]: RouteInfo;
+    [Group in keyof MatchedGroupIdentifiers]: {
+        [Route in MatchedGroupIdentifiers[Group]]: RouteInfo;
     };
 };
