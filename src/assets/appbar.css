@@ -15,7 +15,7 @@
 }
 
 .header {
-    @apply sticky top-0 z-1000 shadow bg-white;
+    @apply sticky top-0 z-1000 shadow;
 }
 
 .appbar-main {
@@ -27,19 +27,24 @@
 }
 
 .appbar-link {
-    @apply px-3 py-2 text-gray-700;
+    @apply px-3 py-2;
 }
 
 .appbar-link-on-current-page {
-    @apply font-semibold;
+    opacity: 1;
 }
 
 .appbar-link-not-on-current-page {
-    @apply transition hover:text-blue-600;
+    transition: opacity 0.15s ease-in-out;
+    opacity: 0.8;
+}
+
+.appbar-link-not-on-current-page:hover {
+    opacity: 1;
 }
 
 .appbar-link-site-title {
-    @apply text-blue-600 font-semibold text-lg;
+    @apply text-blue-400 font-semibold text-lg;
 }
 
 .appbar-secondary-items {
@@ -51,17 +56,27 @@
 }
 
 .appbar-secondary-item-clickable {
-    @apply hover:bg-gray-100 rounded-lg cursor-pointer;
+    @apply rounded-lg cursor-pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.appbar-secondary-item-clickable:hover {
+    background-color: var(--navbar-btn-hover-bg);
 }
 
 .appbar-secondary-item-icon {
-    @apply text-gray-700 transition w-5 h-5;
+    @apply transition w-5 h-5;
 }
 
 .hamburger-container {
     @apply px-2 py-2 hover:bg-gray-100 rounded-lg cursor-pointer;
+    transition: background-color 0.15s ease-in-out
+}
+
+.hamburger-container:hover {
+    background-color: var(--navbar-btn-hover-bg);
 }
 
 .hamburger {
-    @apply text-gray-700 transition w-5 h-5;
+    @apply transition w-5 h-5;
 }
