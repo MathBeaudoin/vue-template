@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory, type Router } from "vue-router";
+import { createRouter, createWebHistory, type RouteLocationRaw, type Router } from "vue-router";
 import { MAPPED_ROUTES } from "@/services/routing/routes";
 import { RouteNames } from "@/services/routing/constants";
-import { useUserSessionStore } from "@/stores/user/userSessionStore";
-import type { RouteNameValue } from "@/services/routing/types";
+import type { RouteInfo, RouteNameValue } from "@/services/routing/types";
 import type { SupportedLocale } from "@/services/i18n/types";
+import { useUserSessionStore } from "@/stores/user/userSessionStore";
 
 export class RouterInstance {
     private router: Router;
@@ -47,40 +47,81 @@ export class RouterInstance {
         });
 
         this.router.beforeEach(async (to, _ /*from*/, next) => {
-            const userSessionStore = useUserSessionStore();
             const routeInfo = MAPPED_ROUTES[to.name as RouteNameValue];
-            const locale: SupportedLocale = userSessionStore.locale;
 
             // Redirects to localized home if authentication requirements are not met
-            const routeRequiresAuthentication = routeInfo.requiresAuth;
-            const routeHiddenOnAuthentication = routeInfo.hideOnAuth;
             if (
-                !this.routeShouldBeAccessible(
-                    userSessionStore.isAuthenticated(),
-                    routeRequiresAuthentication,
-                    routeHiddenOnAuthentication,
+                !this.routeRespectAuthRequirements(
+                    this.getUserSessionStore().isAuthenticated(),
+                    routeInfo.requiresAuth,
+                    routeInfo.hideOnAuth,
                 )
             ) {
-                return next({ path: MAPPED_ROUTES[RouteNames.HOME].path[locale], replace: true });
+                return next(this.generateInvalidAuthRequirementsPath());
             }
 
             // Redirects to localized path if user settings and path are incoherent
-            const expectedPath = routeInfo.path[locale];
-            if (to.path !== expectedPath) {
-                return next({ path: expectedPath, replace: true });
+            if (!this.routeRespectsLocale(routeInfo, to.path)) {
+                const route = this.generateInvalidLocalizationRoute(routeInfo);
+                return next(route);
             }
 
             return next();
         });
     }
 
-    private initialize(): void {}
+    private getUserSessionStore() {
+        return useUserSessionStore();
+    }
 
     public getRouter(): Router {
         return this.router;
     }
 
-    public routeShouldBeAccessible(
+    public generateInvalidAuthRequirementsPath(): RouteLocationRaw | Error {
+        const locale: SupportedLocale = this.getUserSessionStore().locale;
+        const path = MAPPED_ROUTES[RouteNames.HOME].path[locale];
+        if (path === undefined) {
+            // TODO: Invalid locale or corrupted routes
+            return new Error();
+        }
+
+        return {
+            path: path,
+            replace: true,
+        };
+    }
+
+    public generateInvalidLocalizationRoute(routeInfo: RouteInfo): RouteLocationRaw | Error {
+        const locale: SupportedLocale = this.getUserSessionStore().locale;
+        const path = routeInfo.path[locale];
+        if (path === undefined) {
+            // TODO: Invalid locale or corrupted routeInfo
+            return new Error();
+        }
+
+        return {
+            path: path,
+            replace: true,
+        };
+    }
+
+    public routeRespectsLocale(routeInfo: RouteInfo, path: string): boolean | Error {
+        const locale: SupportedLocale = this.getUserSessionStore().locale;
+        const expectedPath = routeInfo.path[locale];
+        if (expectedPath === undefined) {
+            // TODO: Invalid locale or corrupted routeInfo
+            return new Error();
+        }
+
+        if (path !== expectedPath) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public routeRespectAuthRequirements(
         userIsAuthenticated: boolean,
         routeRequiresAuthentication: boolean,
         routeHiddenOnAuthentication: boolean,

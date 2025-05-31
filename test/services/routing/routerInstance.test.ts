@@ -15,7 +15,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = true;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,
@@ -29,7 +29,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,
@@ -43,7 +43,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,
@@ -57,7 +57,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,
@@ -71,7 +71,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,
@@ -85,7 +85,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = true;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,
@@ -99,7 +99,7 @@ describe("services/routing/routerInstance", () => {
         const routeHiddenOnAuthentication = true;
 
         expect(
-            routerInstance.routeShouldBeAccessible(
+            routerInstance.routeRespectAuthRequirements(
                 userIsAuthenticated,
                 routeRequiresAuthentication,
                 routeHiddenOnAuthentication,

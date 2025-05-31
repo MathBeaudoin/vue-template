@@ -33,12 +33,6 @@ const props = defineProps({
 const currentRoute = useRoute();
 const showRoute = computed(() => {
     const userIsAuthenticated = props.isAuthenticated;
-    const routeRequiresAuthentication = props.routeInfo.requiresAuth;
-    const routeHiddenOnAuthentication = props.routeInfo.hideOnAuth;
-    return RoutingService.getRouterInstance().routeShouldBeAccessible(
-        userIsAuthenticated,
-        routeRequiresAuthentication,
-        routeHiddenOnAuthentication,
-    );
+    return RoutingService.routeIsAccessible(userIsAuthenticated, props.routeInfo);
 });
 </script>
