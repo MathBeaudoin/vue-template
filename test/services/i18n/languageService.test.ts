@@ -1,7 +1,7 @@
 import { expect, test, describe, beforeEach, vi } from "vitest";
 import { LanguageService } from "@/services/i18n/languageService";
 
-describe("i18n/languageService", () => {
+describe("services/i18n/languageService", () => {
     const OTHER_SUPPORTED_LANGUAGE: any = {
         locale: "fr",
     };
