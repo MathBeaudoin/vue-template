@@ -1,6 +1,6 @@
 import * as fs from "fs";
-import { MAPPED_ROUTES } from "@/router/routes";
-import type { RouteInfo } from "@/router/types";
+import { MAPPED_ROUTES } from "@/services/routing/routes";
+import type { RouteInfo } from "@/services/routing/types";
 
 function addStartingStringsToSiteMap() {
     let start = ``;

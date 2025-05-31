@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
-import { HeadSelector } from "@/router/headSelector.ts";
+import { HeadSelector } from "@/services/routing/headSelector";
 import { useHead } from "@unhead/vue";
 import { onMounted, ref } from "vue";
 import AppBar from "@/components/appbar/AppBar.vue";

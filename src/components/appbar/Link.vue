@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteInfo } from "@/router/types";
+import type { RouteInfo } from "@/services/routing/types";
 import { computed, type PropType } from "vue";
 import { useRoute } from "vue-router";
-import { routeShouldBeAccessible } from "@/router/util";
+import { RoutingService } from "@/services/routing/routingService";
 
 const props = defineProps({
     routeInfo: {
@@ -35,6 +35,10 @@ const showRoute = computed(() => {
     const userIsAuthenticated = props.isAuthenticated;
     const routeRequiresAuthentication = props.routeInfo.requiresAuth;
     const routeHiddenOnAuthentication = props.routeInfo.hideOnAuth;
-    return routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication);
+    return RoutingService.getRouterInstance().routeShouldBeAccessible(
+        userIsAuthenticated,
+        routeRequiresAuthentication,
+        routeHiddenOnAuthentication,
+    );
 });
 </script>

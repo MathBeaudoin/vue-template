@@ -1,4 +1,4 @@
-import { RouteNames, RoutePaths } from "@/router/constants";
+import { RouteNames, RoutePaths } from "@/services/routing/constants";
 import type { SupportedLocale } from "@/services/i18n/types";
 
 export type RouteNameValue = (typeof RouteNames)[keyof typeof RouteNames];

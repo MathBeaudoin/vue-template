@@ -1,7 +1,7 @@
 import type { RouteRecordNameGeneric } from "vue-router";
-import type { RouteHead, RouteNameValue } from "@/router/types";
-import { RouteNames } from "@/router/constants";
-import { MAPPED_ROUTES } from "@/router/routes";
+import type { RouteHead, RouteNameValue } from "@/services/routing/types";
+import { RouteNames } from "@/services/routing/constants";
+import { MAPPED_ROUTES } from "@/services/routing/routes";
 import { LanguageService } from "@/services/i18n/languageService";
 
 export class HeadSelector {

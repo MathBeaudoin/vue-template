@@ -29,7 +29,7 @@ import {
     DrawerClose,
 } from "@/components/ui/drawer";
 import { VisuallyHidden } from "reka-ui";
-import { CORE_ROUTES } from "@/router/routes";
+import { CORE_ROUTES } from "@/services/routing/routes";
 import Link from "@/components/appbar/Link.vue";
 
 const props = defineProps({

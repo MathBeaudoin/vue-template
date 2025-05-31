@@ -1,14 +1,25 @@
-import { expect, test, describe } from "vitest";
-import { routeShouldBeAccessible } from "@/router/util";
+import { expect, test, describe, vi, beforeEach } from "vitest";
+import { RouterInstance } from "@/services/routing/routerInstance";
 
-describe("router/util", () => {
+describe("services/routing/routerInstance", () => {
+    let routerInstance: RouterInstance;
+
+    beforeEach(() => {
+        vi.restoreAllMocks();
+        routerInstance = Object.create(RouterInstance.prototype);
+    });
+
     test("whenRouteRequiresAuth_andIsHiddenOnAuth_thenErrorIsReturned", () => {
         const userIsAuthenticated = true;
         const routeRequiresAuthentication = true;
         const routeHiddenOnAuthentication = true;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeInstanceOf(Error);
     });
 
@@ -18,7 +29,11 @@ describe("router/util", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeTruthy();
     });
 
@@ -28,7 +43,11 @@ describe("router/util", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeTruthy();
     });
 
@@ -38,7 +57,11 @@ describe("router/util", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeTruthy();
     });
 
@@ -48,7 +71,11 @@ describe("router/util", () => {
         const routeHiddenOnAuthentication = false;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeFalsy();
     });
 
@@ -58,7 +85,11 @@ describe("router/util", () => {
         const routeHiddenOnAuthentication = true;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeFalsy();
     });
 
@@ -68,7 +99,11 @@ describe("router/util", () => {
         const routeHiddenOnAuthentication = true;
 
         expect(
-            routeShouldBeAccessible(userIsAuthenticated, routeRequiresAuthentication, routeHiddenOnAuthentication),
+            routerInstance.routeShouldBeAccessible(
+                userIsAuthenticated,
+                routeRequiresAuthentication,
+                routeHiddenOnAuthentication,
+            ),
         ).toBeTruthy();
     });
 });

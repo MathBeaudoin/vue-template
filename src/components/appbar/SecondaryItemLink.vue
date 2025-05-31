@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteInfo } from "@/router/types";
+import type { RouteInfo } from "@/services/routing/types";
 import Link from "@/components/appbar/Link.vue";
 import SecondaryItemIcon from "@/components/appbar/SecondaryItemIcon.vue";
 import type { PropType } from "vue";
