@@ -34,8 +34,10 @@ export class LanguageService {
     }
 }
 
+export const LANGUAGE_SERVICE_KEY = "languageService" as const;
+
 export function useLanguageService(): LanguageService {
-    const service = inject<LanguageService>("languageService");
+    const service = inject<LanguageService>(LANGUAGE_SERVICE_KEY);
     if (!service) {
         throw new Error("LanguageService was not provided");
     }

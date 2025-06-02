@@ -23,8 +23,10 @@ export class RoutingService {
     }
 }
 
+export const ROUTING_SERVICE_KEY = "routingService" as const;
+
 export function useRoutingService(): RoutingService {
-    const service = inject<RoutingService>("routingService");
+    const service = inject<RoutingService>(ROUTING_SERVICE_KEY);
     if (!service) {
         throw new Error("RoutingService was not provided");
     }

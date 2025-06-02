@@ -26,8 +26,10 @@ export class ThemeService {
     }
 }
 
+export const THEME_SERVICE_KEY = "themeService" as const;
+
 export function useThemeService(): ThemeService {
-    const service = inject<ThemeService>("themeService");
+    const service = inject<ThemeService>(THEME_SERVICE_KEY);
     if (!service) {
         throw new Error("ThemeService was not provided");
     }
