@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
-import { computed, inject } from "vue";
+import { computed } from "vue";
 import { MAPPED_ROUTES, CORE_ROUTES } from "@/services/routing/routes";
 import { RouteNames } from "@/services/routing/constants";
 import { Cog8ToothIcon } from "@heroicons/vue/24/outline";

@@ -3,8 +3,11 @@ import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { createPinia, setActivePinia } from "pinia";
 import { LanguageService } from "@/services/i18n/languageService";
 import { ThemeService } from "@/services/themes/themeService";
+import { mock } from "ts-mockito";
 
 describe("stores/userSessionStore", () => {
+    let languageServiceMock = mock(LanguageService);
+    let themeServiceMock = mock(ThemeService);
     const ANY_SUPPORTED_LANGUAGE: any = {
         locale: "any_locale",
     };
@@ -19,6 +22,8 @@ describe("stores/userSessionStore", () => {
     beforeEach(() => {
         setActivePinia(createPinia());
         vi.restoreAllMocks();
+        languageServiceMock = mock(LanguageService);
+        themeServiceMock = mock(ThemeService);
     });
 
     test("whenCheckingDefaultUserState_thenIsNotAuthenticated", () => {
@@ -29,18 +34,19 @@ describe("stores/userSessionStore", () => {
 
     test("whenChangingLanguage_thenLanguageServiceSelectsNewLanguage", () => {
         const store = getStoreInstance();
-        const languageServiceSpy = vi.spyOn(LanguageService, "selectLanguage");
+        const languageServiceSpy = vi.spyOn(languageServiceMock, "selectLanguage");
 
-        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
+        store.changeLanguage(languageServiceMock, ANY_SUPPORTED_LANGUAGE);
 
         expect(languageServiceSpy).toHaveBeenCalledExactlyOnceWith(ANY_SUPPORTED_LANGUAGE);
     });
 
     test("whenChangingLanguage_thenLocaleIsUpdated", () => {
         const store = getStoreInstance();
-        vi.spyOn(LanguageService, "isValidLanguage").mockReturnValue(true);
+        vi.spyOn(languageServiceMock, "isValidLanguage").mockReturnValue(true);
+        vi.spyOn(languageServiceMock, "selectLanguage").mockReturnValue(ANY_SUPPORTED_LANGUAGE.locale);
 
-        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
+        store.changeLanguage(languageServiceMock, ANY_SUPPORTED_LANGUAGE);
         const locale = store.locale;
 
         expect(locale).toBe(ANY_SUPPORTED_LANGUAGE.locale);
@@ -49,7 +55,7 @@ describe("stores/userSessionStore", () => {
     test("givenErrorOnLanguageService_whenChangingLanguage_thenLocaleIsNotModified", () => {
         const store = getStoreInstance();
 
-        store.changeLanguage(ANY_SUPPORTED_LANGUAGE);
+        store.changeLanguage(languageServiceMock, ANY_SUPPORTED_LANGUAGE);
         const locale = store.locale;
 
         expect(locale).not.toBe(ANY_SUPPORTED_LANGUAGE.locale);
@@ -57,18 +63,19 @@ describe("stores/userSessionStore", () => {
 
     test("whenChangingTheme_thenThemeServiceSelectsNewTheme", () => {
         const store = getStoreInstance();
-        const themeServiceSpy = vi.spyOn(ThemeService, "selectTheme");
+        const themeServiceSpy = vi.spyOn(themeServiceMock, "selectTheme");
 
-        store.changeTheme(ANY_SUPPORTED_THEME);
+        store.changeTheme(themeServiceMock, ANY_SUPPORTED_THEME);
 
         expect(themeServiceSpy).toHaveBeenCalledExactlyOnceWith(ANY_SUPPORTED_THEME);
     });
 
     test("whenChangingTheme_thenThemeIsUpdated", () => {
         const store = getStoreInstance();
-        vi.spyOn(ThemeService, "isValidTheme").mockReturnValue(true);
+        vi.spyOn(themeServiceMock, "isValidTheme").mockReturnValue(true);
+        vi.spyOn(themeServiceMock, "selectTheme").mockReturnValue(ANY_SUPPORTED_THEME.label);
 
-        store.changeTheme(ANY_SUPPORTED_THEME);
+        store.changeTheme(themeServiceMock, ANY_SUPPORTED_THEME);
         const theme = store.theme;
 
         expect(theme).toBe(ANY_SUPPORTED_THEME.label);
@@ -77,7 +84,7 @@ describe("stores/userSessionStore", () => {
     test("givenErrorOnThemeService_whenChangingTheme_thenThemeIsNotModified", () => {
         const store = getStoreInstance();
 
-        store.changeTheme(ANY_SUPPORTED_THEME);
+        store.changeTheme(themeServiceMock, ANY_SUPPORTED_THEME);
         const theme = store.theme;
 
         expect(theme).not.toBe(ANY_SUPPORTED_THEME.theme);
@@ -100,11 +107,11 @@ describe("stores/userSessionStore", () => {
     });
 
     test("whenRefreshingUserSession_thenSelectsThemeAndLanguage", () => {
-        const languageServiceSpy = vi.spyOn(LanguageService, "selectLanguage");
-        const themeServiceSpy = vi.spyOn(ThemeService, "selectTheme");
+        const languageServiceSpy = vi.spyOn(languageServiceMock, "selectLanguage");
+        const themeServiceSpy = vi.spyOn(themeServiceMock, "selectTheme");
         const store = getStoreInstance();
 
-        store.refreshSession();
+        store.refreshSession(languageServiceMock, themeServiceMock);
 
         expect(languageServiceSpy).toHaveBeenCalledOnce();
         expect(themeServiceSpy).toHaveBeenCalledOnce();
