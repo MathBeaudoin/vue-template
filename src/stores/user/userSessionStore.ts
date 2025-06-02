@@ -25,8 +25,8 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             return this.theme === "dark";
         },
 
-        changeTheme(newTheme: SupportedTheme<any>): void {
-            const themeLabelOrError = ThemeService.selectTheme(newTheme);
+        changeTheme(themeService: ThemeService, newTheme: SupportedTheme<any>): void {
+            const themeLabelOrError = themeService.selectTheme(newTheme);
             if (themeLabelOrError instanceof Error) {
                 return;
             }
@@ -34,8 +34,8 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             this.theme = themeLabelOrError;
         },
 
-        changeLanguage(newLanguage: SupportedLanguage<any>): void {
-            const localeOrError = LanguageService.selectLanguage(newLanguage);
+        changeLanguage(languageService: LanguageService, newLanguage: SupportedLanguage<any>): void {
+            const localeOrError = languageService.selectLanguage(newLanguage);
             if (localeOrError instanceof Error) {
                 return;
             }
@@ -51,10 +51,10 @@ export const useUserSessionStore = defineStore("userSessionStore", {
             return SUPPORTED_THEMES[this.theme];
         },
 
-        refreshSession(): void {
+        refreshSession(languageService: LanguageService, themeService: ThemeService): void {
             POP_LOG_DEBUG("UserSessionStore - refreshSession");
-            LanguageService.selectLanguage(this.getCurrentLanguage());
-            ThemeService.selectTheme(this.getCurrentTheme());
+            languageService.selectLanguage(this.getCurrentLanguage());
+            themeService.selectTheme(this.getCurrentTheme());
         },
     },
 

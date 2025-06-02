@@ -2,15 +2,20 @@ import type { SupportedTheme, SupportedThemeLabel } from "@/services/themes/type
 import { SUPPORTED_THEMES } from "@/services/themes/constants";
 import { ThemeInstance } from "@/services/themes/themeInstance";
 import { POP_LOG_DEBUG } from "@/logging/logger";
+import { inject } from "vue";
 
 export class ThemeService {
-    private static themeInstance = new ThemeInstance();
+    private themeInstance: ThemeInstance;
 
-    public static isValidTheme(theme: SupportedTheme<any>): boolean {
+    constructor(themeInstance: ThemeInstance) {
+        this.themeInstance = themeInstance;
+    }
+
+    public isValidTheme(theme: SupportedTheme<any>): boolean {
         return Object.keys(SUPPORTED_THEMES).includes(theme.label);
     }
 
-    public static selectTheme(theme: SupportedTheme<any>): Error | SupportedThemeLabel {
+    public selectTheme(theme: SupportedTheme<any>): Error | SupportedThemeLabel {
         POP_LOG_DEBUG(`ThemeService - selectTheme (${theme.label})`);
         if (!this.isValidTheme(theme)) {
             return new Error();
@@ -19,4 +24,12 @@ export class ThemeService {
         this.themeInstance.setTheme(theme);
         return theme.label;
     }
+}
+
+export function useThemeService(): ThemeService {
+    const service = inject<ThemeService>("themeService");
+    if (!service) {
+        throw new Error("ThemeService was not provided");
+    }
+    return service;
 }

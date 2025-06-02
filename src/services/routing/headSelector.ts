@@ -17,13 +17,13 @@ export class HeadSelector {
         }
     }
 
-    public translate(head: RouteHead): RouteHead {
+    public translate(languageService: LanguageService, head: RouteHead): RouteHead {
         return {
-            title: LanguageService.$t(head.title),
+            title: languageService.$t(head.title),
             meta: [
                 {
                     name: "description",
-                    content: LanguageService.$t(head.meta[0].content),
+                    content: languageService.$t(head.meta[0].content),
                 },
             ],
         };

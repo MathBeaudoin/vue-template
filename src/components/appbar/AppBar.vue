@@ -24,7 +24,7 @@
 
                 <SecondaryItemIcon @click="" :icon="Cog8ToothIcon" />
 
-                <SecondaryItemIcon @click="userSessionStore.changeTheme(nextTheme)" :icon="themeIcon" />
+                <SecondaryItemIcon @click="userSessionStore.changeTheme(themeService, nextTheme)" :icon="themeIcon" />
 
                 <LanguageMenu />
             </nav>
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import { MAPPED_ROUTES, CORE_ROUTES } from "@/services/routing/routes";
 import { RouteNames } from "@/services/routing/constants";
 import { Cog8ToothIcon } from "@heroicons/vue/24/outline";
@@ -50,8 +50,10 @@ import SecondaryItemIcon from "@/components/appbar/SecondaryItemIcon.vue";
 import SecondaryItemLink from "@/components/appbar/SecondaryItemLink.vue";
 import LanguageMenu from "@/components/appbar/LanguageMenu.vue";
 import { SUPPORTED_THEMES } from "@/services/themes/constants";
+import { useThemeService } from "@/services/themes/themeService";
 
 const userSessionStore = useUserSessionStore();
+const themeService = useThemeService();
 
 const isAuthenticated = computed(() => userSessionStore.isAuthenticated());
 const isDarkTheme = computed(() => userSessionStore.isDarkTheme());

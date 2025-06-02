@@ -9,7 +9,7 @@
             <DropdownMenuGroup>
                 <DropdownMenuItem
                     v-for="language in SUPPORTED_LANGUAGES"
-                    @click="userSessionStore.changeLanguage(language)"
+                    @click="userSessionStore.changeLanguage(languageService, language)"
                     class="flex"
                     :class="{
                         'cursor-pointer': !isCurrentLocale(language.locale),
@@ -43,8 +43,10 @@ import { SUPPORTED_LANGUAGES } from "@/services/i18n/constants";
 import { useUserSessionStore } from "@/stores/user/userSessionStore";
 import { storeToRefs } from "pinia";
 import type { SupportedLocale } from "@/services/i18n/types";
+import { useLanguageService } from "@/services/i18n/languageService";
 
 const userSessionStore = useUserSessionStore();
+const languageService = useLanguageService();
 const { locale } = storeToRefs(userSessionStore);
 
 function isCurrentLocale(comparedLocale: SupportedLocale) {

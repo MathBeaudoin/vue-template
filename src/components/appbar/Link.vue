@@ -17,7 +17,9 @@
 import type { RouteInfo } from "@/services/routing/types";
 import { computed, type PropType } from "vue";
 import { useRoute } from "vue-router";
-import { RoutingService } from "@/services/routing/routingService";
+import { useRoutingService } from "@/services/routing/routingService";
+
+const routingService = useRoutingService();
 
 const props = defineProps({
     routeInfo: {
@@ -33,6 +35,6 @@ const props = defineProps({
 const currentRoute = useRoute();
 const showRoute = computed(() => {
     const userIsAuthenticated = props.isAuthenticated;
-    return RoutingService.routeIsAccessible(userIsAuthenticated, props.routeInfo);
+    return routingService.routeIsAccessible(userIsAuthenticated, props.routeInfo);
 });
 </script>

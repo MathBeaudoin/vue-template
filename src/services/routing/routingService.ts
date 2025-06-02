@@ -1,21 +1,32 @@
 import { RouterInstance } from "@/services/routing/routerInstance";
 import type { RouteInfo } from "@/services/routing/types";
+import { inject } from "vue";
 
 export class RoutingService {
-    private static router = new RouterInstance();
+    private routerInstance;
 
-    /**
-     * Should ONLY be used to create the Vue application
-     */
-    public static getRouterInstance(): RouterInstance {
-        return this.router;
+    constructor(routerInstance: RouterInstance) {
+        this.routerInstance = routerInstance;
     }
 
-    public static routeIsAccessible(userIsAuthenticated: boolean, routeInfo: RouteInfo): boolean | Error {
-        return this.router.routeRespectAuthRequirements(
+    // Should ONLY be used externally to create the Vue application
+    public getRouterInstance(): RouterInstance {
+        return this.routerInstance;
+    }
+
+    public routeIsAccessible(userIsAuthenticated: boolean, routeInfo: RouteInfo): boolean | Error {
+        return this.routerInstance.routeRespectAuthRequirements(
             userIsAuthenticated,
             routeInfo.requiresAuth,
             routeInfo.hideOnAuth,
         );
     }
+}
+
+export function useRoutingService(): RoutingService {
+    const service = inject<RoutingService>("routingService");
+    if (!service) {
+        throw new Error("RoutingService was not provided");
+    }
+    return service;
 }
