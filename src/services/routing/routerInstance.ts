@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, type RouteLocationRaw, type Router } from "vue-router";
+import { createRouter, createWebHistory, type RouteLocationAsPathGeneric, type Router } from "vue-router";
 import { MAPPED_ROUTES } from "@/services/routing/routes";
 import { RouteNames } from "@/services/routing/constants";
 import type { RouteInfo, RouteNameValue } from "@/services/routing/types";
@@ -47,22 +47,24 @@ export class RouterInstance {
         });
 
         this.router.beforeEach(async (to, _ /*from*/, next) => {
+            // Accept the use of a store here since it can't really be passed through the service
+            const userSessionStore = useUserSessionStore();
             const routeInfo = MAPPED_ROUTES[to.name as RouteNameValue];
 
             // Redirects to localized home if authentication requirements are not met
             if (
                 !this.routeRespectAuthRequirements(
-                    this.getUserSessionStore().isAuthenticated(),
+                    userSessionStore.isAuthenticated(),
                     routeInfo.requiresAuth,
                     routeInfo.hideOnAuth,
                 )
             ) {
-                return next(this.generateInvalidAuthRequirementsPath());
+                return next(this.generateInvalidAuthRequirementsRoute(userSessionStore.locale));
             }
 
             // Redirects to localized path if user settings and path are incoherent
-            if (!this.routeRespectsLocale(routeInfo, to.path)) {
-                const route = this.generateInvalidLocalizationRoute(routeInfo);
+            if (!this.routeRespectsLocale(routeInfo, to.path, userSessionStore.locale)) {
+                const route = this.generateValidLocalizedRoute(routeInfo, userSessionStore.locale);
                 return next(route);
             }
 
@@ -70,16 +72,11 @@ export class RouterInstance {
         });
     }
 
-    private getUserSessionStore() {
-        return useUserSessionStore();
-    }
-
     public getRouter(): Router {
         return this.router;
     }
 
-    public generateInvalidAuthRequirementsPath(): RouteLocationRaw | Error {
-        const locale: SupportedLocale = this.getUserSessionStore().locale;
+    public generateInvalidAuthRequirementsRoute(locale: SupportedLocale): RouteLocationAsPathGeneric | Error {
         const path = MAPPED_ROUTES[RouteNames.HOME].path[locale];
         if (path === undefined) {
             // TODO: Invalid locale or corrupted routes
@@ -92,8 +89,10 @@ export class RouterInstance {
         };
     }
 
-    public generateInvalidLocalizationRoute(routeInfo: RouteInfo): RouteLocationRaw | Error {
-        const locale: SupportedLocale = this.getUserSessionStore().locale;
+    public generateValidLocalizedRoute(
+        routeInfo: RouteInfo,
+        locale: SupportedLocale,
+    ): RouteLocationAsPathGeneric | Error {
         const path = routeInfo.path[locale];
         if (path === undefined) {
             // TODO: Invalid locale or corrupted routeInfo
@@ -106,8 +105,7 @@ export class RouterInstance {
         };
     }
 
-    public routeRespectsLocale(routeInfo: RouteInfo, path: string): boolean | Error {
-        const locale: SupportedLocale = this.getUserSessionStore().locale;
+    public routeRespectsLocale(routeInfo: RouteInfo, path: string, locale: SupportedLocale): boolean | Error {
         const expectedPath = routeInfo.path[locale];
         if (expectedPath === undefined) {
             // TODO: Invalid locale or corrupted routeInfo
