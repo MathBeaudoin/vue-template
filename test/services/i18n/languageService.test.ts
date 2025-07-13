@@ -2,17 +2,15 @@ import { expect, test, describe, beforeEach, vi } from "vitest";
 import { LanguageService } from "@/services/i18n/languageService";
 import { I18nInstance } from "@/services/i18n/i18nInstance";
 import type { SupportedLanguage, SupportedLocale } from "@/services/i18n/types";
+import { SUPPORTED_LANGUAGES } from "@/services/i18n/constants";
 
 describe("services/i18n/languageService", () => {
     let languageService: LanguageService;
-
-    const DEFAULT_LOCALE: SupportedLocale = "fr";
-
+    const FRENCH_LOCALE: SupportedLocale = "fr";
     const OTHER_SUPPORTED_LANGUAGE: SupportedLanguage<any> = {
         label: "SUPPORTED_LABEL",
         locale: "SUPPORTED_LOCALE",
     };
-
     const UNSUPPORTED_LANGUAGE: SupportedLanguage<any> = {
         label: "UNSUPPORTED_LABEL",
         locale: "UNSUPPORTED_LOCALE",
@@ -23,10 +21,10 @@ describe("services/i18n/languageService", () => {
         languageService = new LanguageService(new I18nInstance());
     });
 
-    test("whenGettingDefaultLocale_thenValueIsExpected", () => {
+    test("whenGettingDefaultLocale_thenIsFrench", () => {
         const defaultLocale = languageService.getLocale();
 
-        expect(defaultLocale).toBe(DEFAULT_LOCALE);
+        expect(defaultLocale).toBe(SUPPORTED_LANGUAGES[FRENCH_LOCALE].locale);
     });
 
     test("whenSelectingOtherSupportedLanguage_thenLocaleIsChangedAndReturned", () => {
