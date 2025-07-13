@@ -22,7 +22,7 @@ describe("services/routing/routerInstance", () => {
         routerInstance = Object.create(RouterInstance.prototype);
     });
 
-    test("whenRouteRequiresAuth_andIsHiddenOnAuth_thenErrorIsReturned", () => {
+    test("whenRouteRequiresAuth_andIsHiddenOnAuth_thenReturnsError", () => {
         const userIsAuthenticated = true;
         const routeRequiresAuthentication = true;
         const routeHiddenOnAuthentication = true;
@@ -132,13 +132,13 @@ describe("services/routing/routerInstance", () => {
         ).toBeTruthy();
     });
 
-    test("whenPathFromRouteInfoCannotBeLocalized_thenErrorIsReturned", () => {
+    test("whenPathFromRouteInfoCannotBeLocalized_thenReturnsError", () => {
         expect(
             routerInstance.routeRespectsLocale(ROUTE_INFO_WITH_LOCALIZED_PATH, ANY_PATH, UNSUPPORTED_LOCALE),
         ).toBeInstanceOf(Error);
     });
 
-    test("whenGeneratingValidLocalizedRoute_andRouteCannotBeLocalized_thenErrorIsReturned", () => {
+    test("whenGeneratingValidLocalizedRoute_andRouteCannotBeLocalized_thenReturnsError", () => {
         expect(
             routerInstance.generateValidLocalizedRoute(ROUTE_INFO_WITH_LOCALIZED_PATH, UNSUPPORTED_LOCALE),
         ).toBeInstanceOf(Error);
