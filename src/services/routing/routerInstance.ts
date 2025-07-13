@@ -15,6 +15,8 @@ export class RouterInstance {
                 return { top: 0 };
             },
 
+            // EXISITNG LIMITATION: Although paths will work regarding of your locale (and be translated accordingly),
+            // a change of language will not update the path of the current page. It will be updated on reload.
             // Alias path should exist for all supported languages, and all default paths
             // should be for the same language.
             routes: [
