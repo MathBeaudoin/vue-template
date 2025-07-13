@@ -19,6 +19,10 @@ export class LanguageService {
         return this.i18nInstance;
     }
 
+    public getLocale(): SupportedLocale {
+        return this.i18nInstance.getLocale();
+    }
+
     public selectLanguage(language: SupportedLanguage<any>): Error | SupportedLocale {
         POP_LOG_DEBUG(`LanguageService - selectLanguage (${language.locale})`);
         if (!this.isValidLanguage(language)) {
@@ -26,7 +30,7 @@ export class LanguageService {
         }
 
         this.i18nInstance.setLocale(language.locale);
-        return language.locale;
+        return this.i18nInstance.getLocale();
     }
 
     public get $t() {

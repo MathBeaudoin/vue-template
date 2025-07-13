@@ -1,39 +1,58 @@
 import { expect, test, describe, beforeEach, vi } from "vitest";
 import { LanguageService } from "@/services/i18n/languageService";
 import { I18nInstance } from "@/services/i18n/i18nInstance";
+import type { SupportedLanguage, SupportedLocale } from "@/services/i18n/types";
 
 describe("services/i18n/languageService", () => {
     let languageService: LanguageService;
-    const OTHER_SUPPORTED_LANGUAGE: any = {
-        locale: "fr",
+
+    const DEFAULT_LOCALE: SupportedLocale = "fr";
+
+    const OTHER_SUPPORTED_LANGUAGE: SupportedLanguage<any> = {
+        label: "SUPPORTED_LABEL",
+        locale: "SUPPORTED_LOCALE",
     };
-    const ANY_INVALID_LANGUAGE: any = {};
+
+    const UNSUPPORTED_LANGUAGE: SupportedLanguage<any> = {
+        label: "UNSUPPORTED_LABEL",
+        locale: "UNSUPPORTED_LOCALE",
+    };
 
     beforeEach(() => {
         vi.restoreAllMocks();
         languageService = new LanguageService(new I18nInstance());
     });
 
+    test("whenGettingDefaultLocale_thenValueIsExpected", () => {
+        const defaultLocale = languageService.getLocale();
+
+        expect(defaultLocale).toBe(DEFAULT_LOCALE);
+    });
+
     test("whenSelectingOtherSupportedLanguage_thenLocaleIsChangedAndReturned", () => {
-        const i18nInstanceSpy = vi.spyOn(languageService.getI18nInstance(), "setLocale");
         vi.spyOn(languageService, "isValidLanguage").mockReturnValue(true);
 
-        const locale = languageService.selectLanguage(OTHER_SUPPORTED_LANGUAGE);
+        const returnedLocale = languageService.selectLanguage(OTHER_SUPPORTED_LANGUAGE);
+        const newLocale = languageService.getLocale();
 
-        expect(locale).toBe(OTHER_SUPPORTED_LANGUAGE.locale);
-        expect(i18nInstanceSpy).toHaveBeenCalledExactlyOnceWith(locale);
+        expect(returnedLocale).toBe(newLocale);
+        expect(returnedLocale).toBe(OTHER_SUPPORTED_LANGUAGE.locale);
     });
 
-    test("whenSelectingInvalidLanguage_thenLocaleIsNotChanged", () => {
-        const i18nInstanceSpy = vi.spyOn(languageService.getI18nInstance(), "setLocale");
+    test("whenSelectingInvalidLanguage_thenLocaleIsNotChangedAndNotReturned", () => {
+        vi.spyOn(languageService, "isValidLanguage").mockReturnValue(false);
 
-        const locale = languageService.selectLanguage(ANY_INVALID_LANGUAGE);
+        const initialLocale = languageService.getLocale();
+        const returnedLocale = languageService.selectLanguage(UNSUPPORTED_LANGUAGE);
+        const currentLocale = languageService.getLocale();
 
-        expect(locale).not.toBe(ANY_INVALID_LANGUAGE.locale);
-        expect(i18nInstanceSpy).not.toBeCalled();
+        expect(returnedLocale).not.toBe(UNSUPPORTED_LANGUAGE.locale);
+        expect(initialLocale).toBe(currentLocale);
     });
 
-    test("whenSelectingInvalidLanguage_thenErrorIsReturned", () => {
-        expect(languageService.selectLanguage(ANY_INVALID_LANGUAGE)).toBeInstanceOf(Error);
+    test("whenSelectingInvalidLanguage_thenReturnsError", () => {
+        vi.spyOn(languageService, "isValidLanguage").mockReturnValue(false);
+
+        expect(languageService.selectLanguage(UNSUPPORTED_LANGUAGE)).toBeInstanceOf(Error);
     });
 });
