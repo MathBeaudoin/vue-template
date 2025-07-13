@@ -2,16 +2,14 @@ import { test, describe, beforeEach, vi, expect } from "vitest";
 import { ThemeService } from "@/services/themes/themeService";
 import { ThemeInstance } from "@/services/themes/themeInstance";
 import type { SupportedTheme, SupportedThemeLabel } from "@/services/themes/types";
+import { SUPPORTED_THEMES } from "@/services/themes/constants";
 
 describe("services/theme/themeService", () => {
     let themeService: ThemeService;
-
-    const DEFAULT_THEME: SupportedThemeLabel = "light";
-
+    const LIGHT_THEME: SupportedThemeLabel = "light";
     const OTHER_SUPPORTED_THEME: SupportedTheme<any> = {
         label: "SUPPORTED_LABEL",
     };
-
     const UNSUPPORTED_THEME: SupportedTheme<any> = {
         label: "UNSUPPORTED_LABEL",
     };
@@ -21,10 +19,10 @@ describe("services/theme/themeService", () => {
         themeService = new ThemeService(new ThemeInstance());
     });
 
-    test("whenGettingDefaultTheme_thenValueIsExpected", () => {
+    test("whenGettingDefaultTheme_thenIsLight", () => {
         const defaultTheme = themeService.getTheme();
 
-        expect(defaultTheme).toBe(DEFAULT_THEME);
+        expect(defaultTheme).toBe(SUPPORTED_THEMES[LIGHT_THEME].label);
     });
 
     test("whenSelectingOtherSupportedTheme_thenThemeIsChangedAndReturned", () => {
