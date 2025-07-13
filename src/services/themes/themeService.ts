@@ -15,6 +15,10 @@ export class ThemeService {
         return Object.keys(SUPPORTED_THEMES).includes(theme.label);
     }
 
+    public getTheme(): SupportedThemeLabel {
+        return this.themeInstance.getTheme().label;
+    }
+
     public selectTheme(theme: SupportedTheme<any>): Error | SupportedThemeLabel {
         POP_LOG_DEBUG(`ThemeService - selectTheme (${theme.label})`);
         if (!this.isValidTheme(theme)) {
