@@ -11,12 +11,19 @@
             "meta": "Short description here for About Page"
         },
         "not_found": {
-            "displayed_name": "Page Not found",
+            "displayed_name": "Oops!",
             "head_title": "Vue Template - Not Found Page Description",
             "meta": "Short description here for Not Found Page"
         },
         "languages": {
             "displayed_name": "Languages"
+        }
+    },
+    "pages": {
+        "not_found": {
+            "description": "Page not found",
+            "go_home_button": "Go to homepage",
+            "go_back_button": "Go back"
         }
     }
 }

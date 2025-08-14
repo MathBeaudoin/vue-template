@@ -43,7 +43,8 @@ export class RouterInstance {
                 },
                 {
                     path: "/:catchAll(.*)",
-                    redirect: { name: MAPPED_ROUTES[RouteNames.HOME].name },
+                    component: () => import("@/pages/NotFound.vue"),
+                    beforeEnter: [],
                 },
             ],
         });
@@ -51,7 +52,13 @@ export class RouterInstance {
         this.router.beforeEach(async (to, _ /*from*/, next) => {
             // Accept the use of a store here since it can't really be passed through the service
             const userSessionStore = useUserSessionStore();
-            const routeInfo = MAPPED_ROUTES[to.name as RouteNameValue];
+            const routeInfo: RouteInfo | undefined = MAPPED_ROUTES[to.name as RouteNameValue];
+
+            // If this case happens, then either the route was not registered, or this is simply an
+            // invalid route. In either case, the user should probably be redirected to an unfound page.
+            if (!routeInfo) {
+                return next(this.generateNotFoundLocalizedRoute(userSessionStore.locale));
+            }
 
             // Redirects to localized home if authentication requirements are not met
             if (
@@ -84,6 +91,16 @@ export class RouterInstance {
             // TODO: Invalid locale or corrupted routes
             return new Error();
         }
+
+        return {
+            path: path,
+            replace: true,
+        };
+    }
+
+    public generateNotFoundLocalizedRoute(locale: SupportedLocale): RouteLocationAsPathGeneric | Error {
+        const routeInfo = MAPPED_ROUTES[RouteNames.NOT_FOUND];
+        const path = routeInfo.path[locale];
 
         return {
             path: path,
