@@ -7,12 +7,12 @@
             {{ $t("pages.not_found.description") }}
         </h1>
         <div class="text-center">
-            <Button class="mx-1" @click="router.push({ name: MAPPED_ROUTES[RouteNames.HOME].name })"> {{ $t("pages.not_found.go_home_button") }} </Button>
+            <Button class="mx-1" @click="router.push({ name: MAPPED_ROUTES[RouteNames.HOME].name })">
+                {{ $t("pages.not_found.go_home_button") }}
+            </Button>
             <Button class="mx-1" @click="router.back()"> {{ $t("pages.not_found.go_back_button") }} </Button>
         </div>
     </div>
-
-
 </template>
 
 <script setup lang="ts">
@@ -22,5 +22,4 @@ import { RouteNames } from "@/services/routing/constants";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-
 </script>
