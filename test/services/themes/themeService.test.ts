@@ -46,7 +46,7 @@ describe("services/theme/themeService", () => {
         expect(initialTheme).toBe(currentTheme);
     });
 
-    test("whenSelectingInvalidLanguage_thenReturnsError", () => {
+    test("whenSelectingInvalidTheme_thenReturnsError", () => {
         vi.spyOn(themeService, "isValidTheme").mockReturnValue(false);
 
         expect(themeService.selectTheme(UNSUPPORTED_THEME)).toBeInstanceOf(Error);
